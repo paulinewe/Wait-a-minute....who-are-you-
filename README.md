@@ -1,1 +1,2 @@
 # Wait-a-minute....who-are-you-
+fMRI project on pattern separation of familiar and unfamiliar faces. Based on the fMRI data, we collected in cooperation with Prof. Gyula Kovacs from Friedrich-Schiller-University Jena, we examine the processes of pattern separation of faces in the brain.
