@@ -1,3 +1,3 @@
 # Open lab notebook
 
-Describe how you structured your open lab notebook and provide potential further helpful information.
+Here you will find monthly updates on what is happening regarding the planing, implementation etc. 
