@@ -16,6 +16,7 @@
 - meeting, look at data
 - check data, structure, size
 - check matlab-script to find trail info
+- added bagdes to READ.ME
 
 ### Problems
 - data has to be transformed in BIDS
