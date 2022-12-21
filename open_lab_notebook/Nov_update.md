@@ -14,7 +14,12 @@
 
 ## Week3
 - meeting, look at data
-- start preprocessing
+- check data, structure, size
+- check matlab-script to find trail info
+- added bagdes to READ.ME
 
 ### Problems
+- data has to be transformed in BIDS
+- sharing data on Github needs to be approved from Jena
+
 ### Next months happenings
