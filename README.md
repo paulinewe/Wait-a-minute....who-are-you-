@@ -6,8 +6,6 @@
 [![GitHub PR](https://img.shields.io/github/issues-pr/PeerHerholz/MSc05_template_repository)](https://github.com/PeerHerholz/MSc05_template_repository/pulls)
 [![License](https://img.shields.io/github/license/PeerHerholz/MSc05_template_repository)](https://github.com/PeerHerholz/MSc05_template_repository)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/paulinewe/Whoru.git/main)
-.. image:: https://mybinder.org/badge_logo.svg
- :target: https://mybinder.org/v2/gh/paulinewe/Whoru.git/main
 
 ## Overview
 The data used for this analysis comes from the paper ["Person identity-specific adaptation effects in the ventral occipito-temporal cortex"](https://onlinelibrary.wiley.com/doi/full/10.1111/ejn.15604?utm_campaign=RESR_MRKT_Researcher_inbound&af=R&utm_medium=referral&utm_source=researcher_app&sid=researcher) by Rostalski, Robinson,Ambrus et.al (2022). In their experiment participants underwent trials containing eight different images of a famous person, images of eight different famous persons or seven different images of a particular famous person followed by an identity change to violate potential expectation effects about person identity.
