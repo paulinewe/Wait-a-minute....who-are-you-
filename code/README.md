@@ -1,3 +1,3 @@
-# Code
+# Notebook
 
-Here you will find alls infos on the code used.
+Here you will find all notebooks.
