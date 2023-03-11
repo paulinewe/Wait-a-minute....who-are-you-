@@ -1,4 +1,4 @@
-# Wait-a-minute....who-are-you-
+# Whoru
 
 [![Jupyter Book Badge](https://jupyterbook.org/badge.svg)](http://www.peerherholz.github.io/MSc05_template_repository/)
 [![GitHub size](https://img.shields.io/github/repo-size/PeerHerholz/MSc05_template_repository)](https://github.com/repronim/OHBMEducation-2022/archive/master.zip)
