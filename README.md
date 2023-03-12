@@ -12,11 +12,6 @@ The data used for this analysis comes from the paper ["Person identity-specific 
 
 The aim of the respository is to allow a transparent and replicable research project, by providing the codes, data and information on the process. This should enable fellow researchers to have a critically look, redo the experiment and analyses, as well as use the collected data for further research.
 
-What you will find here:
-- python code for analysis
-- data
-- details on modells and analysis
-- research documentation
 
 ### Further ressources
 The project is also published on [OSF](https://osf.io/aenpr/?view_only=026c7375139f4cceb16d0242692d7092), where you can get further information and recent activities regarding the experiment and analyses as well as literature we based the experiment and analyses on.
