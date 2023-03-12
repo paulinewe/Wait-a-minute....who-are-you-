@@ -1,8 +1,2 @@
-# macOS
-.DS_Store
-
-# PyCharm
-.idea/
-
-# build
-lecture/_build/*
+/content/_build/
+*.ipynb_checkpoints
