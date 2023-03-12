@@ -18,52 +18,25 @@ These pages are currently under construction and will be updated continuously.
 Please visit these pages again in the next few weeks for further information.
 ````
 
-Hello everyone and welcome to the course page for X
+Hello everyone and welcome to the page of my assignment.
 
-## Course name
+<iframe src=https://media.giphy.com/media/agmheddabICHK/giphy.gif width="240" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
 
-Within this course we will explore X
+## Whoru..
+
+Within this website you can explore what I did and went through in the course 'Cognitive and Computational Neuroscience' and you can get an idea on how to work with neuro data in a open-sciency way as I introduce you to some open source ressources making life a bit easier (... well depends,ay?)
 
 You can use the following sections to navigate through the content of the lecture:
 
-* [Overview & procedure ](https://m-earnest.github.io/course_template_diler/general_information/overview.html)
-
-   What's this course all about? How are things implemented and supposed to work?
-
-* [General outline](https://m-earnest.github.io/course_template_diler/general_information/outline.html)
-
-   What are the specific topics and aspects taught?
-
-* [Introduction](https://m-earnest.github.io/course_template_diler/introduction/intro.html)
-
-   All things gotta start somewhere, but how?
-
-* [Content](https://m-earnest.github.io/course_template_diler/content/intro_content.html)
-
-   What is this course gonna contain?
-
-   
-* [Results communication](https://m-earnest.github.io/course_template_diler/general_information/results_communication.html)
-
-   Where should the acquired knowledge to be disseminated?
-
-* [Symposium](https://m-earnest.github.io/course_template_diler/general_information/symposium.html)
-
-   What to do about outreach and discourse creation?
-
-
-* [Diversity, Equity, Inclusion](https://m-earnest.github.io/course_template_diler/general_information/dei.html)
-
-   What to look out for, what to keep in mind and how to trear each other.
-
-* [Code of Conduct](https://m-earnest.github.io/course_template_diler/general_information/CoC.html)
-
-   Necessities for creating an open, fair, safe and inclusive learning
-   experience.
-
-## I've got a question!
-
-In case you have any questions or difficulties with the lecture and its materials, please don’t hesitate a single second to get in touch with us. A great way to do this is to open an issue on the GitHub site of the course. You can of course further contact us via [E-mail](@psych.uni-frankfurt.de). Every feedback or idea  you might have is highly appreciated and valued.
+* [Intro](./markdown/Intro.md)
+* [Documentation](./markdown/Documentation.md)
+* [BIDS-Conversion](./markdown/BIDS-Conversion.md)
+* [Preprocessing](./markdown/Preprocessing.md)
+* [Data Exploration](./code/Exploration.ipynb)
+* [Neuroquery](./markdown/Neuroquery.md)
+* [Results](./markdown/Results.md)
+* [Discussion](./markdown/Discussion.md)
 
 
 ## Acknowledgements
+Thanks to [Peer Herholz](https://github.com/PeerHerholz), Michael Ernst (https://github.com/M-earnest) and and Prof. [Gyula Kovacs](http://cogsci.uni-jena.de/) from the Friedrich-Schiller University Jena for supervision and mentoring. Special thanks to Sophie-Marie Rostalski, Jonathan Edward Robinson, Géza Gergely Ambrus, Patrick Johnston and Gyula Kovács for providing the data.
