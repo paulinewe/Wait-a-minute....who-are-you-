@@ -1,0 +1,16 @@
+root: index
+format: jb-book
+chapters:
+- file: markdown/intro.md
+  sections:
+  - file: markdown/documentation.md
+- file: markdown/BIDS-Conversion.md
+- file: markdown/preprocessing.md
+- file: markdown/Neuroquery.md
+  sections:
+  - file: markdown/Results.md
+- file: markdown/disussion.md
+- file: references.md
+
+
+
