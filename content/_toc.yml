@@ -10,8 +10,8 @@ chapters:
 - file: markdown/Neuroquery.md
   sections:
   - file: markdown/Results.md
-- file: markdown/Disussion.md
-- file: References.md
+- file: markdown/Discussion.md
+- file: references.md
 
 
 
