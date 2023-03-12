@@ -7,8 +7,6 @@ titlesonly: true
 ---
 ```
 
-![diler logo](static/logo.png)
-
 
 # Welcome!
 
@@ -19,8 +17,6 @@ Please visit these pages again in the next few weeks for further information.
 ````
 
 Hello everyone and welcome to the page of my assignment.
-
-<iframe src=https://media.giphy.com/media/agmheddabICHK/giphy.gif width="240" height="200" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>'
 
 ## Whoru..
 
