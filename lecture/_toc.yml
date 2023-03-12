@@ -1,20 +1,19 @@
-root: general_information/index
+root: index
 format: jb-book
 chapters:
-- file: general_information/overview
-- file: general_information/procedure
-- file: general_information/outline
-- file: general_information/setup
-- file: introduction/intro
+- file: overview
+- file: outline
+- file: introduction/Bachground.ipynb
+- file: data/BIDS_and_Konversion.ipynb
+- file: data/data_management.ipynb
+- file: data/data_exploration.ipynb
+- file: data/preprocessing.ipynb
+- file: results/neuroquery.ipnyb
+- file: discussion/discussion.ipynb
+- file: open_lab_notebook/README.md
   sections:
-  - file: introduction/static_content
-  - file: introduction/interactive_notebook
-- file: content/intro_content
-  sections:
-  - file: content/static_content.md
-  - file: content/interactive_notebook.md
-  - file: content/creating_content_example.ipynb
-- file: general_information/results_communication
-- file: general_information/symposium
-- file: general_information/CoC
-- file: general_information/dei
+  - file: open_lab_notebook/pages/Nov_update.md
+  - file: open_lab_notebook/pages/Dez_update.md
+  - file: open_lab_notebook/pages/Jan_update.md
+  - file: open_lab_notebook/pages/Feb_update.md
+  - file: open_lab_notebook/pages/March_update.md
