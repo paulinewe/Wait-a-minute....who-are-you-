@@ -155,6 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Documentation.html">Documentation</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">BIDS-Conversion</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/Exploration.html">Example Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Neuroquery.html">Neuroquery</a></li>
@@ -347,7 +348,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -363,6 +366,26 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">BIDS-Conversion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-imaging-data-structure">Brain Imaging Data Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">Advantages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dicom-conversion">DICOM Conversion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heudiconv">HeuDiConv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -374,6 +397,51 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="bids-conversion">
 <h1>BIDS-Conversion<a class="headerlink" href="#bids-conversion" title="Permalink to this heading">#</a></h1>
+<p>My data set consists of Dicoms, which are not arragend according to the ‘Brain Imaging Data Structure’ (BIDS). But why is this not <span class="xref myst">practical</span> and how can one <span class="xref myst">convert</span> the data structure into the BIDS format?</p>
+<p>This is something I will explain in the following. Let’s begin with BIDS and the advantages of organising data like that.</p>
+<section id="brain-imaging-data-structure">
+<h2>Brain Imaging Data Structure<a class="headerlink" href="#brain-imaging-data-structure" title="Permalink to this heading">#</a></h2>
+<p>BIDS is a standard developed to get to a consensus on how to organize, describe and collect neuroimaging data. BIDS is based on NiFTi files, which should be converted from source dat e.g. DICOM. BIDS follows a specific way on naming and structuring files as you can see in the image below.<a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Next to the NiFTi files, which stores the brain imaging data <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, JSON files containing the respective metadata and TSV files with demographics etc.</p>
+<p><img alt="BIDS_CON" src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fsdata.2016.44/MediaObjects/41597_2016_Article_BFsdata201644_Fig1_HTML.jpg?as=webp" />
+<em>taken from Gorgolewski, K., Auer, T., Calhoun, V. et al. (2016), p.3</em></p>
+<section id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this heading">#</a></h3>
+<p>Using a common standard for the description and organization has the follwoing advantages<a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> :</p>
+<ul class="simple">
+<li><p>easily understandable data structure, so that veryone at any time can work with the data</p></li>
+<li><p>reduces error due to misunderstandings</p></li>
+<li><p>optimizing reproducability and efficiency, as standardization allows automated analysis workflows</p></li>
+<li><p>validation tools make finding missings easier</p></li>
+<li><p>speeds up sharing data on online databases as they can understand and export data in BIDS format</p></li>
+</ul>
+</section>
+</section>
+<section id="dicom-conversion">
+<h2>DICOM Conversion<a class="headerlink" href="#dicom-conversion" title="Permalink to this heading">#</a></h2>
+<p>Before starting to convert the data, one should organize anstructure the imaging data with at least a folder for each subject. If you have multiple session, the subject folder should have folders for each session.
+For me the structure in the DICOMs folder looked like this:</p>
+<img src="./content/static/Structure.jpg">
+<p>There are a number of converters out there, but I used HeuDiConv and in the following I will explain the neccessary steps my data went through to convert it.</p>
+<section id="heudiconv">
+<h3>HeuDiConv<a class="headerlink" href="#heudiconv" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
+<hr class="footnotes docutils" />
+<aside class="footnote brackets" id="id4" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Gorgolewski, K., Auer, T., Calhoun, V. et al. The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. Sci Data 3, 160044 (2016). <a class="reference external" href="https://doi.org/10.1038/sdata.2016.44S">https://doi.org/10.1038/sdata.2016.44S</a></p>
+</aside>
+<aside class="footnote brackets" id="id5" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://nifti.nimh.nih.gov/">https://nifti.nimh.nih.gov/</a></p>
+</aside>
+<aside class="footnote brackets" id="id6" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://bids.neuroimaging.io/benefits.html#benefits">https://bids.neuroimaging.io/benefits.html#benefits</a></p>
+</aside>
 </section>
 
     <script type="text/x-thebe-config">
@@ -428,6 +496,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">BIDS-Conversion</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#brain-imaging-data-structure">Brain Imaging Data Structure</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages">Advantages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dicom-conversion">DICOM Conversion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heudiconv">HeuDiConv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
