@@ -377,7 +377,11 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dicom-conversion">DICOM Conversion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heudiconv">HeuDiConv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heudiconv">HeuDiConv</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#process">Process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -401,12 +405,12 @@ document.write(`
 <p>This is something I will explain in the following. Let’s begin with BIDS and the advantages of organising data like that.</p>
 <section id="brain-imaging-data-structure">
 <h2>Brain Imaging Data Structure<a class="headerlink" href="#brain-imaging-data-structure" title="Permalink to this heading">#</a></h2>
-<p>BIDS is a standard developed to get to a consensus on how to organize, describe and collect neuroimaging data. BIDS is based on NiFTi files, which should be converted from source dat e.g. DICOM. BIDS follows a specific way on naming and structuring files as you can see in the image below.<a class="footnote-reference brackets" href="#id4" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Next to the NiFTi files, which stores the brain imaging data <a class="footnote-reference brackets" href="#id5" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, JSON files containing the respective metadata and TSV files with demographics etc.</p>
+<p>BIDS is a standard developed to get to a consensus on how to organize, describe and collect neuroimaging data. BIDS is based on NiFTi files, which should be converted from source dat e.g. DICOM. BIDS follows a specific way on naming and structuring files as you can see in the image below.<a class="footnote-reference brackets" href="#id7" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> Next to the NiFTi files, which stores the brain imaging data <a class="footnote-reference brackets" href="#id8" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, JSON files containing the respective metadata and TSV files with demographics etc.</p>
 <p><img alt="BIDS_CON" src="https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fsdata.2016.44/MediaObjects/41597_2016_Article_BFsdata201644_Fig1_HTML.jpg?as=webp" />
 <em>taken from Gorgolewski, K., Auer, T., Calhoun, V. et al. (2016), p.3</em></p>
 <section id="advantages">
 <h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this heading">#</a></h3>
-<p>Using a common standard for the description and organization has the follwoing advantages<a class="footnote-reference brackets" href="#id6" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> :</p>
+<p>Using a common standard for the description and organization has the follwoing advantages<a class="footnote-reference brackets" href="#id9" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> :</p>
 <ul class="simple">
 <li><p>easily understandable data structure, so that veryone at any time can work with the data</p></li>
 <li><p>reduces error due to misunderstandings</p></li>
@@ -418,29 +422,164 @@ document.write(`
 </section>
 <section id="dicom-conversion">
 <h2>DICOM Conversion<a class="headerlink" href="#dicom-conversion" title="Permalink to this heading">#</a></h2>
-<p>Before starting to convert the data, one should organize anstructure the imaging data with at least a folder for each subject. If you have multiple session, the subject folder should have folders for each session.
-For me the structure in the DICOMs folder looked like this:</p>
-<img src="./content/static/Structure.jpg">
-<p>There are a number of converters out there, but I used HeuDiConv and in the following I will explain the neccessary steps my data went through to convert it.</p>
+<p>Before starting to convert the data, one should organize anstructure the imaging data with at least a folder for each subject. If you have multiple session, the subject folder should have folders for each session. A folder for the NiFTis you will create is also a good idea.
+For me the structure in the Data folder looked like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Data
+└───Dicoms
+    └───sub-01
+    │   └───Anat
+            └───SCANS
+                └───DICOMS
+    │   └───Run01
+            └───SCANS
+                └───DICOMS
+    │   └───Run02
+            └───SCANS
+                └───DICOMS
+    │   └───Run03
+            └───SCANS
+                └───DICOMS
+    │   └───Run04
+            └───SCANS
+                └───DICOMS
+    │   └───Loc
+    │   └───Trails
+    └───sub-02
+└───NiFTi
+</pre></div>
+</div>
+<p>There are a number of converters out there, but I used HeuDiConv and in the following I will explain the neccessary steps my data went through to convert it. I only will need th anatomical and the funtional scans from the runs.</p>
 <section id="heudiconv">
 <h3>HeuDiConv<a class="headerlink" href="#heudiconv" title="Permalink to this heading">#</a></h3>
+<p>HeuDiConv is a flexible DICOM converter for organizing your brain imaging data into a directory layout depending on your needs as you can simple adapt the heuristic. It provides a fast way of transforming your data as it only uses the relevant DICOMS <a class="footnote-reference brackets" href="#id10" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> and dcm2niix, which converts Dicoms into NiFTi files<a class="footnote-reference brackets" href="#id11" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>. To make life a bit more easy, there are some tutorials out there from which I followed the <a class="reference external" href="https://reproducibility.stanford.edu/bids-tutorial-series-part-2a/">walkthrough</a> by the Stanford Center for Reproducible Neuroscience.</p>
+<section id="requirements">
+<h4>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/desktop/windows/wsl/">Docker Desktop</a></p></li>
+<li><p>Ubuntu 20.04 LTS or any latest version or WSL</p></li>
+<li><p>Conda 4.12.0 or latest version</p></li>
+<li><p><a class="reference external" href="https://code.visualstudio.com/">VS Code</a></p></li>
+</ul>
+<p>(bring this to life was a hugh mess for me, <span class="xref myst">see</span>)</p>
+</section>
+<section id="process">
+<h4>Process<a class="headerlink" href="#process" title="Permalink to this heading">#</a></h4>
+<ol class="arabic">
+<li><p><strong>setting up the environment:</strong>
+After installing everything, you need to enable your WSL in Docker and now you have to pll the latest release of heudiconv.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ```
+ $ docker pull nipy/heudiconv:latest
+ ```
+</pre></div>
+</div>
+</li>
+<li><p><strong>getting the dicominfo file:</strong>
+Now you run heudiconv the first time on the first subject to receive the dicominfo file, which is needed to edited the <a class="reference external" href="http://heuristic.py">heuristic.py</a> according to the experiment.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ```
+ $ docker run --rm -it -v /mnt/d/Data:/base nipy/heudiconv:latest -d /base/Dicoms/sub-{subject}/*/*/*/* -o /base/NiFTi/ -f convertall -s 01 -c none --overwrite
+ ```
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--rm</span></code>: calls docker</p>
+<p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">/mnt/d/Data:/base</span></code>:  mouths the path to my data and calls it bas</p>
+<p><code class="docutils literal notranslate"><span class="pre">nipy/heudiconv:latest</span></code>: calls latest heudiconv</p>
+<p><code class="docutils literal notranslate"><span class="pre">-d</span></code>:  is the path to my Dicom files, with the <code class="docutils literal notranslate"><span class="pre">/*/*/*/*</span></code> defining that they can be found 4 folders deep in the file structure</p>
+<p><code class="docutils literal notranslate"><span class="pre">-o</span></code>: dfines my output folder</p>
+<p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: stands for the heuristic file, which will be used later to convert all other files</p>
+<p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">01</span></code>: will step in for the place holder in <code class="docutils literal notranslate"><span class="pre">-d</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">-c</span></code>: converter that is used, here none</p>
+<p>After running this command there is a hidden file in the NiFTi folder, from which you need to move the dicominfo.tsv into the NiFTi folder</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cp /mnt/d/Data/NiFTi/.heudiconv/01/info/dicominfo.tsv /mnt/d/Data
+</pre></div>
+</div>
+</li>
+<li><p><strong>editing the <a class="reference external" href="http://heuristic.py">heuristic.py</a>:</strong></p>
+<p>So there is the discominfo.tsv which contains a lot of inforamtion on the fMRI measurement. For this case I recieved the follwoing variables:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> - total_files_till_now	
+ - example_dcm_file	
+ - series_id	dcm_dir_name	
+ - series_files	
+ - unspecified	
+ - dim1	
+ - dim2	
+ - dim3	
+ - dim4	
+ - TR	
+ - TE	
+ - protocol_name	
+ - is_motion_corrected	
+ - is_derived	
+ - patient_id	
+ - study_description	
+ - referring_physician_name	
+ - series_description	
+ - sequence_name	
+ - image_type	
+ - accession_number	
+ - patient_age	
+ - patient_sex	
+ - date	
+ - series_uid	
+ - time
+</pre></div>
+</div>
+<p>With that information you adapt the heuristic file with VS Code, which is in the hidden folder. Here you can see my edited heuristic:</p>
+<p><img alt="heuristic" src="../_images/my_heuristic.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">t1w</span> <span class="pre">=</span> <span class="pre">create_key('sub-{subject}/anat/sub-{subject}_T1w'</span></code> and <code class="docutils literal notranslate"><span class="pre">func</span> <span class="pre">=</span> <span class="pre">create_key('sub-{subject}/func/sub-{subject}_task-rest_run-00{item:01d}_bold')</span></code> define the conversion outputs for the anatomical and functional scans and contain the naming convetion for the NiFTI files.</p>
+ <details>
+ <summary>T1w and T2w</summary>
+ <p>T1w: repetition time (TR) and the echo time (TE) are selected in such a way that the examined tissues are mainly determined by their T1 relaxation time, resulting in images where bones and other high-fat structures are light[^6]
+<p>T2w:the repetition time (TR) and the echo time (TE) are chosen in such a way that the examined tissues are differentiated primarily by their T2 relaxation time, what results in images where fluids are light<a class="footnote-reference brackets" href="#id12" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a> </p></p>
+ </details>
+<p>In <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">idx,</span> <span class="pre">s</span> <span class="pre">in</span> <span class="pre">enumerate(seqinfo)</span></code> you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  <code class="docutils literal notranslate"><span class="pre">t1w</span></code> the <code class="docutils literal notranslate"><span class="pre">protocol</span> <span class="pre">name</span></code> hast to be <code class="docutils literal notranslate"><span class="pre">MPRAGE_20ch</span></code> in the files, as that is specific for the anatomical scans. To get assigned to <code class="docutils literal notranslate"><span class="pre">func</span></code> I decided that the <code class="docutils literal notranslate"><span class="pre">dim1</span></code> has to be <code class="docutils literal notranslate"><span class="pre">64</span></code>, as that was specific for the funktional runs.</p>
+</li>
+<li><p><strong>Converting all:</strong></p>
+<p>After changing the <a class="reference external" href="http://heuristic.py">heuristic.py</a> the conversion party can begin with the follow command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="p">:</span><span class="o">/</span><span class="n">base</span> <span class="n">nipy</span><span class="o">/</span><span class="n">heudiconv</span><span class="p">:</span><span class="n">latest</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">Dicoms</span><span class="o">/</span><span class="n">sub</span><span class="o">-</span><span class="p">{</span><span class="n">subject</span><span class="p">}</span><span class="o">/*/*/*/*</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">NiFTi</span><span class="o">/</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">NiFTi</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">heuristic</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">s</span> <span class="mi">01</span> <span class="mi">02</span> <span class="mi">03</span> <span class="mi">04</span> <span class="mi">05</span> <span class="mi">06</span> <span class="mi">07</span> <span class="mi">08</span> <span class="mi">09</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span> <span class="mi">14</span> <span class="mi">15</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">18</span> <span class="mi">19</span> <span class="mi">20</span> <span class="mi">21</span> <span class="mi">22</span> <span class="mi">23</span> <span class="mi">24</span> <span class="mi">25</span> <span class="mi">26</span> <span class="mi">27</span> <span class="mi">28</span> <span class="mi">29</span> <span class="mi">30</span> <span class="o">-</span><span class="n">c</span> <span class="n">dcm2niix</span> <span class="o">-</span><span class="n">b</span> <span class="o">--</span><span class="n">overwrite</span>
+</pre></div>
+</div>
+<p>It ist similar to the one used before, but with some important changes:</p>
+<p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: the path to the heuristic file</p>
+<p><code class="docutils literal notranslate"><span class="pre">-s</span></code>: is a list and now all subjects will be converted</p>
+<p><code class="docutils literal notranslate"><span class="pre">-c</span></code>: the converter dcm2niix is added to transform the dicoms into NiFTis</p>
+<p><code class="docutils literal notranslate"><span class="pre">-b</span></code>: flags that output shall be converted into BIDS</p>
+</li>
+</ol>
+<p>With that being done, it is almost ready. One last step is to validate the data set to make sure it is now in the BIDS format and nothing is missing. Which can be easily done with <a class="reference external" href="http://bids-standard.github.io/bids-validator/">http://bids-standard.github.io/bids-validator/</a> or withe setup we already needed, you can do the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">ti</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">NiFTi</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="p">:</span><span class="n">ro</span> <span class="n">bids</span><span class="o">/</span><span class="n">validator</span> <span class="o">/</span><span class="n">data</span>
+</pre></div>
+</div>
+<p><em>put Image here for validation</em></p>
+</section>
 </section>
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="references">
 <h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="id4" role="note">
+<aside class="footnote brackets" id="id7" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>Gorgolewski, K., Auer, T., Calhoun, V. et al. The brain imaging data structure, a format for organizing and describing outputs of neuroimaging experiments. Sci Data 3, 160044 (2016). <a class="reference external" href="https://doi.org/10.1038/sdata.2016.44S">https://doi.org/10.1038/sdata.2016.44S</a></p>
 </aside>
-<aside class="footnote brackets" id="id5" role="note">
+<aside class="footnote brackets" id="id8" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://nifti.nimh.nih.gov/">https://nifti.nimh.nih.gov/</a></p>
 </aside>
-<aside class="footnote brackets" id="id6" role="note">
+<aside class="footnote brackets" id="id9" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">3</a><span class="fn-bracket">]</span></span>
 <p><a class="reference external" href="https://bids.neuroimaging.io/benefits.html#benefits">https://bids.neuroimaging.io/benefits.html#benefits</a></p>
+</aside>
+<aside class="footnote brackets" id="id10" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">4</a><span class="fn-bracket">]</span></span>
+<p>Halchenko, Y., Goncalves, M., Velasco, P., Castello, M. V. di O., Ghosh, S., Salo, T., Hanke, M., II, J. T. W., Michael, Dae, Kent, J., Christian, H., Brett, M., Amlien, I., Gorgolewski, C., Lukas, D. C., Markiewicz, C., Tilley, S., Stadler, J., … Wagner, A. (2023). nipy/heudiconv: V0.12.0 (v0.12.0). Zenodo. <a class="reference external" href="https://doi.org/10.5281/zenodo.7662350">https://doi.org/10.5281/zenodo.7662350</a></p>
+</aside>
+<aside class="footnote brackets" id="id11" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
+<p>Li, X., Morgan, P. S., Ashburner, J., Smith, J., &amp; Rorden, C. (2016). The first step for neuroimaging data analysis: DICOM to NIfTI conversion. Journal of neuroscience methods, 264, 47–56. <a class="reference external" href="https://doi.org/10.1016/j.jneumeth.2016.03.001">https://doi.org/10.1016/j.jneumeth.2016.03.001</a></p>
+</aside>
+<aside class="footnote brackets" id="id12" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">7</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://flexikon.doccheck.com/de/T2-Wichtung">https://flexikon.doccheck.com/de/T2-Wichtung</a></p>
 </aside>
 </section>
 
@@ -511,7 +650,11 @@ For me the structure in the DICOMs folder looked like this:</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dicom-conversion">DICOM Conversion</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heudiconv">HeuDiConv</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heudiconv">HeuDiConv</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#process">Process</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
