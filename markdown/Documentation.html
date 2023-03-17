@@ -348,7 +348,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -364,6 +366,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-data-set">Evaluation of Data Set</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -375,11 +385,17 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="documentation">
 <h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h1>
-<p>Here are all the links on where to find</p>
+<section id="evaluation-of-data-set">
+<h2>Evaluation of Data Set<a class="headerlink" href="#evaluation-of-data-set" title="Permalink to this heading">#</a></h2>
+<p>As mentioned in the <a class="reference internal" href="Intro.html"><span class="doc std std-doc">Intro</span></a> I recieved my data from Prof. Dr. Gyula Kovács at University of Frankfurt. I was provided with access to there server to download the dataset.
+Unfourtunately the raw data is not available freely, that’s why I am can only present what is legally possible and therefore reproducing is limited. Nevertheless, extraced fMRI data and code from the originial study by Rostalski et al. (2022) is available at OSF (<a class="reference external" href="https://osf.io/m3pwt/">https://osf.io/m3pwt/</a>).</p>
+<p>The data set consists of functional magnetic resonance imaging (fMRI) scans from a face recognition task for 30 participants. For scanning a three Tesla MR Scanner (Siemens Prisma fit) was used. Functional data was obtained using an Echo Planar Imaging (EPI) Sequence (35 slices; TR = 2000 ms; TE = 30 ms; flip angle = 90°; 64*64 matrices; in-plane resolution: 3 × 3 mm2; slice thickness: 3 mm).  and magnetisation-prepared rapid gradient-echo sequence (MP-RAGE; TR = 2300 ms; TE = 3,03, 1 mm isotropic voxel size) was used to acquire high-resolution T1-weighted sagittal images for structual 3D images. All images they used a 20-channel head coil.</p>
+<p>Here are all the links on where to find what</p>
 <p><a class="reference external" href="https://github.com/paulinewe/Whoru/tree/main/open_lab_notebook/pages">….what I did when</a></p>
 <p><a class="reference external" href="https://github.com/paulinewe/Whoru">….all files I can share</a></p>
 <p><a class="reference external" href="https://www.zotero.org/groups/4721790/whoareu">….what I read</a></p>
 <p><a class="reference external" href="https://osf.io/aenpr/?view_only=026c7375139f4cceb16d0242692d7092">…. overview on all of the above OSF</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -434,6 +450,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-data-set">Evaluation of Data Set</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
