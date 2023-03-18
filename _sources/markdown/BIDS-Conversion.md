@@ -143,7 +143,8 @@ HeuDiConv is a flexible DICOM converter for organizing your brain imaging data i
     T2w:the repetition time (TR) and the echo time (TE) are chosen in such a way that the examined tissues are differentiated primarily by their T2 relaxation time, what results in images where fluids are light[^7] </p>
     </details>
 
-    In `for idx, s in enumerate(seqinfo)` you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  `t1w` the `pr` hast todim1e `256` in the files, as that is specific for the anatomical scans. To get assigned to `func` I decided that the `dim1` has to be `64`, as that was specific for the funktional runs.
+   
+    In `for idx, s in enumerate(seqinfo)` you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  `t1w` the condition is: `dim1 == 256 and 'MPRAGE_20ch' in s.protocol_name`, as that is specific for the anatomical scans. To get assigned to `func` I decided that the `dim1` has to be `64`, as that was specific for the funktional runs.
 
 4. **Converting all:**
 
@@ -162,11 +163,7 @@ HeuDiConv is a flexible DICOM converter for organizing your brain imaging data i
 
     `-b`: flags that output shall be converted into BIDS
 
-With that being done, it is almost ready. One last step is to validate the data set to make sure it is now in the BIDS format and nothing is missing. Which can be easily done with http://bids-standard.github.io/bids-validator/ or withe setup we already needed, you can do the following command:
-
-```
-docker run -ti --rm -v /mnt/d/Data/NiFTi:/data:ro bids/validator /data
-```
+With that being done, it is almost ready. One last step is to validate the data set to make sure it is now in the BIDS format and nothing is missing. Which can be easily done with http://bids-standard.github.io/bids-validator/.
 
 
 *put Image here for validation*
