@@ -143,7 +143,7 @@ HeuDiConv is a flexible DICOM converter for organizing your brain imaging data i
     T2w:the repetition time (TR) and the echo time (TE) are chosen in such a way that the examined tissues are differentiated primarily by their T2 relaxation time, what results in images where fluids are light[^7] </p>
     </details>
 
-    In `for idx, s in enumerate(seqinfo)` you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  `t1w` the `protocol name` hast to be `MPRAGE_20ch` in the files, as that is specific for the anatomical scans. To get assigned to `func` I decided that the `dim1` has to be `64`, as that was specific for the funktional runs.
+    In `for idx, s in enumerate(seqinfo)` you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  `t1w` the `pr` hast todim1e `256` in the files, as that is specific for the anatomical scans. To get assigned to `func` I decided that the `dim1` has to be `64`, as that was specific for the funktional runs.
 
 4. **Converting all:**
 

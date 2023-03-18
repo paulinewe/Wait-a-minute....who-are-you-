@@ -154,12 +154,12 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Documentation.html">Documentation</a></li>
+
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">BIDS-Conversion</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/Exploration.html">Example Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Neuroquery.html">Neuroquery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Results.html">Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
 </ul>
 
@@ -531,7 +531,7 @@ Now you run heudiconv the first time on the first subject to receive the dicomin
  <p>T1w: repetition time (TR) and the echo time (TE) are selected in such a way that the examined tissues are mainly determined by their T1 relaxation time, resulting in images where bones and other high-fat structures are light[^6]
 <p>T2w:the repetition time (TR) and the echo time (TE) are chosen in such a way that the examined tissues are differentiated primarily by their T2 relaxation time, what results in images where fluids are light<a class="footnote-reference brackets" href="#id12" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a> </p></p>
  </details>
-<p>In <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">idx,</span> <span class="pre">s</span> <span class="pre">in</span> <span class="pre">enumerate(seqinfo)</span></code> you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  <code class="docutils literal notranslate"><span class="pre">t1w</span></code> the <code class="docutils literal notranslate"><span class="pre">protocol</span> <span class="pre">name</span></code> hast to be <code class="docutils literal notranslate"><span class="pre">MPRAGE_20ch</span></code> in the files, as that is specific for the anatomical scans. To get assigned to <code class="docutils literal notranslate"><span class="pre">func</span></code> I decided that the <code class="docutils literal notranslate"><span class="pre">dim1</span></code> has to be <code class="docutils literal notranslate"><span class="pre">64</span></code>, as that was specific for the funktional runs.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">idx,</span> <span class="pre">s</span> <span class="pre">in</span> <span class="pre">enumerate(seqinfo)</span></code> you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  <code class="docutils literal notranslate"><span class="pre">t1w</span></code> the <code class="docutils literal notranslate"><span class="pre">pr</span></code> hast todim1e <code class="docutils literal notranslate"><span class="pre">256</span></code> in the files, as that is specific for the anatomical scans. To get assigned to <code class="docutils literal notranslate"><span class="pre">func</span></code> I decided that the <code class="docutils literal notranslate"><span class="pre">dim1</span></code> has to be <code class="docutils literal notranslate"><span class="pre">64</span></code>, as that was specific for the funktional runs.</p>
 </li>
 <li><p><strong>Converting all:</strong></p>
 <p>After changing the <a class="reference external" href="http://heuristic.py">heuristic.py</a> the conversion party can begin with the follow command:</p>

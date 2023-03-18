@@ -154,12 +154,12 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Intro.html">Introduction</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Documentation</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="BIDS-Conversion.html">BIDS-Conversion</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/Exploration.html">Example Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Neuroquery.html">Neuroquery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Results.html">Results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
 </ul>
 
@@ -371,8 +371,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Documentation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-data-set">Evaluation of Data Set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literature">Literature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-lab-notebook">Open Lab Notebook</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-environment">Computational Environment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osf">OSF</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -387,14 +398,40 @@ document.write(`
 <h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">#</a></h1>
 <section id="evaluation-of-data-set">
 <h2>Evaluation of Data Set<a class="headerlink" href="#evaluation-of-data-set" title="Permalink to this heading">#</a></h2>
-<p>As mentioned in the <a class="reference internal" href="Intro.html"><span class="doc std std-doc">Intro</span></a> I recieved my data from Prof. Dr. Gyula Kovács at University of Frankfurt. I was provided with access to there server to download the dataset.
+<p>As mentioned in the <a class="reference internal" href="Intro.html"><span class="doc std std-doc">Intro</span></a> I recieved my data from Prof. Dr. Gyula Kovács at University of Jena. I was provided with access to there server to download the dataset.
 Unfourtunately the raw data is not available freely, that’s why I am can only present what is legally possible and therefore reproducing is limited. Nevertheless, extraced fMRI data and code from the originial study by Rostalski et al. (2022) is available at OSF (<a class="reference external" href="https://osf.io/m3pwt/">https://osf.io/m3pwt/</a>).</p>
-<p>The data set consists of functional magnetic resonance imaging (fMRI) scans from a face recognition task for 30 participants. For scanning a three Tesla MR Scanner (Siemens Prisma fit) was used. Functional data was obtained using an Echo Planar Imaging (EPI) Sequence (35 slices; TR = 2000 ms; TE = 30 ms; flip angle = 90°; 64*64 matrices; in-plane resolution: 3 × 3 mm2; slice thickness: 3 mm).  and magnetisation-prepared rapid gradient-echo sequence (MP-RAGE; TR = 2300 ms; TE = 3,03, 1 mm isotropic voxel size) was used to acquire high-resolution T1-weighted sagittal images for structual 3D images. All images they used a 20-channel head coil.</p>
-<p>Here are all the links on where to find what</p>
-<p><a class="reference external" href="https://github.com/paulinewe/Whoru/tree/main/open_lab_notebook/pages">….what I did when</a></p>
-<p><a class="reference external" href="https://github.com/paulinewe/Whoru">….all files I can share</a></p>
+<p>The data set consists of functional magnetic resonance imaging (fMRI) scans from a face recognition task for 30 participants. For scanning a three Tesla MR Scanner (Siemens Prisma fit) was used. Functional data was obtained using an Echo Planar Imaging (EPI) Sequence (35 slices; TR = 2000 ms; TE = 30 ms; flip angle = 90°; 64*64 matrices; in-plane resolution: 3 × 3 mm2; slice thickness: 3 mm).  and magnetisation-prepared rapid gradient-echo sequence (MP-RAGE; TR = 2300 ms; TE = 3,03, 1 mm isotropic voxel size) was used to acquire high-resolution T1-weighted sagittal images for structual 3D images. For all images they used a 20-channel head coil.</p>
+<p>The data did not come in BIDS standard. So in order to make working more easily, effectively and understandable for others I had to <a class="reference internal" href="BIDS-Conversion.html"><span class="doc std std-doc">convert</span></a> it, which was quite time consuming. Due to data not being published online, all work needed to be done locally, which makes the small sample size an advantages, as some things could be done on a ordinary laptop but on the other hand this puts limits on what can be done in terms of machine-learning-because of the sample size, but also the possbilities with my own laptop. So the project is more or less reduced to getting to know the workflows and programms to prepare the data, whether than setting up an algorithm. If you want to analyze it with an algorithm it is more suited to use an already trained one, than use it as a base to train an algorithm. For that it would need a huge amount more subjects.</p>
+<p>Nevertheless, the data is useful and the experimental paradigm interesting plus with more subjects it probably provides a lot of information on face recognition areas to unravel.</p>
+</section>
+<section id="version-control">
+<h2>Version control<a class="headerlink" href="#version-control" title="Permalink to this heading">#</a></h2>
+<p>To keep on track with everything which has be done, it is important to ensure some form of version control. It is also important to have a backup and GitHub is one practical tool to use for version control. GitHub is a webbased hosting service. On Github you create a local folder structure in a respository in which you can push the changes made in the local files or you can pull respositories from other onto your local machine to work on them. Github also allows to add different branches, so that you changes not all happen on your master branch and later you merge branches together. Next to all the version controll, it is a platform where you can easily work with others on a project and get help. That not being enough, hosting this website is also possible through Github.</p>
+<p><a class="reference external" href="https://github.com/paulinewe/Whoru">…. my github respository</a>.</p>
+</section>
+<section id="literature">
+<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this heading">#</a></h2>
+<p>Organizing literature and citing can be done by using a reference management software. The one I used ist Zotero Libary, which is a free and open-source software. Due to its browser add-on, adding ressources to your library is done in secounds as it automatically extracts metadata, but you can also upload e.g. BibTex formats.</p>
 <p><a class="reference external" href="https://www.zotero.org/groups/4721790/whoareu">….what I read</a></p>
-<p><a class="reference external" href="https://osf.io/aenpr/?view_only=026c7375139f4cceb16d0242692d7092">…. overview on all of the above OSF</a></p>
+</section>
+<section id="open-lab-notebook">
+<h2>Open Lab Notebook<a class="headerlink" href="#open-lab-notebook" title="Permalink to this heading">#</a></h2>
+<p>When you push things to GitHUb you should add a commit message, idicating what changes took place. For a more detailes description on what was done, it is recommended to write an open lab notebook. In this notebook you can document, what you did, what your goals are, what problems appeared, update monthly/weekly/daily etc… endless possiblities.</p>
+<p>I decided to provide monthly updates. They contained what ruff summary of the month before, updates for every week of the month, problems and task for the following month.</p>
+<p><a class="reference external" href="https://github.com/paulinewe/Whoru/tree/main/open_lab_notebook/pages">….what I did when</a></p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="computational-environment">
+<h1>Computational Environment<a class="headerlink" href="#computational-environment" title="Permalink to this heading">#</a></h1>
+<p>To be able to run a code of someody else, you need the computational environment in which the code was created. This consits of all modules etc. that where used.</p>
+<p><a class="reference external" href="https://github.com/paulinewe/Whoru/tree/main/content/code">….the environment</a></p>
+<blockquote>
+<div><p>Disclaimer: as the data is not freely available, reproducing my steps is not possible :/</p>
+</div></blockquote>
+<section id="osf">
+<h2>OSF<a class="headerlink" href="#osf" title="Permalink to this heading">#</a></h2>
+<p>OSF is an open-source online platform to register and manage projects. Here you can also document your progress, share projects and you ressources. It is a place where all the above mentioned programmes can be integrated and so the latest updates automatically are documented in the OSF project.</p>
+<p><a class="reference external" href="https://osf.io/aenpr/?view_only=026c7375139f4cceb16d0242692d7092">…. overview on my OSF project</a></p>
 </section>
 </section>
 
@@ -459,8 +496,19 @@ Unfourtunately the raw data is not available freely, that’s why I am can only 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Documentation</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-data-set">Evaluation of Data Set</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-control">Version control</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#literature">Literature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#open-lab-notebook">Open Lab Notebook</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#computational-environment">Computational Environment</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osf">OSF</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
