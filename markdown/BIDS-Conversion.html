@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'markdown/BIDS-Conversion';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Preprocessing" href="Preprocessing.html" />
+    <link rel="next" title="Example Content" href="../code/Exploration.html" />
     <link rel="prev" title="Documentation" href="Documentation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -157,7 +157,6 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">BIDS-Conversion</a></li>
 
-<li class="toctree-l1"><a class="reference internal" href="Preprocessing.html">Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../code/Exploration.html">Example Content</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Neuroquery.html">Neuroquery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
@@ -455,7 +454,7 @@ For me the structure in the Data folder looked like this:</p>
 <section id="requirements">
 <h4>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h4>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.docker.com/desktop/windows/wsl/">Docker Desktop</a></p></li>
+<li><p><a class="reference external" href="https://docs.docker.com/desktop/windows/wsl/">Docker Desktop</a> <em>(open the app with adminstrator priviledge to make everthing work)</em></p></li>
 <li><p>Ubuntu 20.04 LTS or any latest version or WSL</p></li>
 <li><p>Conda 4.12.0 or latest version</p></li>
 <li><p><a class="reference external" href="https://code.visualstudio.com/">VS Code</a></p></li>
@@ -466,7 +465,8 @@ For me the structure in the Data folder looked like this:</p>
 <h4>Process<a class="headerlink" href="#process" title="Permalink to this heading">#</a></h4>
 <ol class="arabic">
 <li><p><strong>setting up the environment:</strong>
-After installing everything, you need to enable your WSL in Docker and now you have to pll the latest release of heudiconv.</p>
+After installing everything, you need to enable your WSL in Docker and now you have to pull the latest release of ‘heudiconv’. Docker is software in which you can create “containers”, which are like virtual machines and work like a separate operating system with a specific software configuration.
+With pulling ‘heudiconv’, its Docker container and all  dependencies get installed.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> ```
  $ docker pull nipy/heudiconv:latest
  ```
@@ -532,14 +532,15 @@ Now you run heudiconv the first time on the first subject to receive the dicomin
 <p>T2w:the repetition time (TR) and the echo time (TE) are chosen in such a way that the examined tissues are differentiated primarily by their T2 relaxation time, what results in images where fluids are light<a class="footnote-reference brackets" href="#id12" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a> </p></p>
  </details>
 <p>In <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">idx,</span> <span class="pre">s</span> <span class="pre">in</span> <span class="pre">enumerate(seqinfo)</span></code> you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  <code class="docutils literal notranslate"><span class="pre">t1w</span></code> the condition is: <code class="docutils literal notranslate"><span class="pre">dim1</span> <span class="pre">==</span> <span class="pre">256</span> <span class="pre">and</span> <span class="pre">'MPRAGE_20ch'</span> <span class="pre">in</span> <span class="pre">s.protocol_name</span></code>, as that is specific for the anatomical scans. To get assigned to <code class="docutils literal notranslate"><span class="pre">func</span></code> I decided that the <code class="docutils literal notranslate"><span class="pre">dim1</span></code> has to be <code class="docutils literal notranslate"><span class="pre">64</span></code>, as that was specific for the funktional runs.</p>
+<p>I placed the heuristic file in a seperate ‘code’ folder inside the Nifit folder.</p>
 </li>
 <li><p><strong>Converting all:</strong></p>
-<p>After changing the <a class="reference external" href="http://heuristic.py">heuristic.py</a> the conversion party can begin with the follow command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="p">:</span><span class="o">/</span><span class="n">base</span> <span class="n">nipy</span><span class="o">/</span><span class="n">heudiconv</span><span class="p">:</span><span class="n">latest</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">Dicoms</span><span class="o">/</span><span class="n">sub</span><span class="o">-</span><span class="p">{</span><span class="n">subject</span><span class="p">}</span><span class="o">/*/*/*/*</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">NiFTi</span><span class="o">/</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">NiFTi</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">heuristic</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">s</span> <span class="mi">01</span> <span class="mi">02</span> <span class="mi">03</span> <span class="mi">04</span> <span class="mi">05</span> <span class="mi">06</span> <span class="mi">07</span> <span class="mi">08</span> <span class="mi">09</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span> <span class="mi">14</span> <span class="mi">15</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">18</span> <span class="mi">19</span> <span class="mi">20</span> <span class="mi">21</span> <span class="mi">22</span> <span class="mi">23</span> <span class="mi">24</span> <span class="mi">25</span> <span class="mi">26</span> <span class="mi">27</span> <span class="mi">28</span> <span class="mi">29</span> <span class="mi">30</span> <span class="o">-</span><span class="n">c</span> <span class="n">dcm2niix</span> <span class="o">-</span><span class="n">b</span> <span class="o">--</span><span class="n">overwrite</span>
+<p>After changing the <a class="reference external" href="http://heuristic.py">heuristic.py</a> the conversion party can begin with the follow command (subject 03 was excluded, as there were problems with the files):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="p">:</span><span class="o">/</span><span class="n">base</span> <span class="n">nipy</span><span class="o">/</span><span class="n">heudiconv</span><span class="p">:</span><span class="n">latest</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">Dicoms</span><span class="o">/</span><span class="n">sub</span><span class="o">-</span><span class="p">{</span><span class="n">subject</span><span class="p">}</span><span class="o">/*/*/*/*</span> <span class="o">-</span><span class="n">o</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">NiFTi</span><span class="o">/</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">base</span><span class="o">/</span><span class="n">NiFTi</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">heuristic</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">s</span> <span class="mi">01</span> <span class="mi">02</span> <span class="mi">04</span> <span class="mi">05</span> <span class="mi">06</span> <span class="mi">07</span> <span class="mi">08</span> <span class="mi">09</span> <span class="mi">10</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span> <span class="mi">14</span> <span class="mi">15</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">18</span> <span class="mi">19</span> <span class="mi">20</span> <span class="mi">21</span> <span class="mi">22</span> <span class="mi">23</span> <span class="mi">24</span> <span class="mi">25</span> <span class="mi">26</span> <span class="mi">27</span> <span class="mi">28</span> <span class="mi">29</span> <span class="mi">30</span> <span class="o">-</span><span class="n">c</span> <span class="n">dcm2niix</span> <span class="o">-</span><span class="n">b</span> <span class="o">--</span><span class="n">overwrite</span>
 </pre></div>
 </div>
 <p>It ist similar to the one used before, but with some important changes:</p>
-<p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: the path to the heuristic file</p>
+<p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: the path to the heuristic file in the ‘code’ folder</p>
 <p><code class="docutils literal notranslate"><span class="pre">-s</span></code>: is a list and now all subjects will be converted</p>
 <p><code class="docutils literal notranslate"><span class="pre">-c</span></code>: the converter dcm2niix is added to transform the dicoms into NiFTis</p>
 <p><code class="docutils literal notranslate"><span class="pre">-b</span></code>: flags that output shall be converted into BIDS</p>
@@ -618,11 +619,11 @@ Now you run heudiconv the first time on the first subject to receive the dicomin
       </div>
     </a>
     <a class="right-next"
-       href="Preprocessing.html"
+       href="../code/Exploration.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Preprocessing</p>
+        <p class="prev-next-title">Example Content</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
