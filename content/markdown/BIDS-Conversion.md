@@ -58,7 +58,7 @@ There are a number of converters out there, but I used HeuDiConv and in the foll
 HeuDiConv is a flexible DICOM converter for organizing your brain imaging data into a directory layout depending on your needs as you can simple adapt the heuristic. It provides a fast way of transforming your data as it only uses the relevant DICOMS [^4] and dcm2niix, which converts Dicoms into NiFTi files[^5]. To make life a bit more easy, there are some tutorials out there from which I followed the [walkthrough](https://reproducibility.stanford.edu/bids-tutorial-series-part-2a/) by the Stanford Center for Reproducible Neuroscience.
 
 #### Requirements
-* [Docker Desktop](https://docs.docker.com/desktop/windows/wsl/)
+* [Docker Desktop](https://docs.docker.com/desktop/windows/wsl/) *(open the app with adminstrator priviledge to make everthing work)*
 * Ubuntu 20.04 LTS or any latest version or WSL
 * Conda 4.12.0 or latest version
 * [VS Code](https://code.visualstudio.com/)
@@ -67,7 +67,8 @@ HeuDiConv is a flexible DICOM converter for organizing your brain imaging data i
 
 #### Process
 1. **setting up the environment:**
-    After installing everything, you need to enable your WSL in Docker and now you have to pll the latest release of heudiconv.
+    After installing everything, you need to enable your WSL in Docker and now you have to pull the latest release of 'heudiconv'. Docker is software in which you can create “containers”, which are like virtual machines and work like a separate operating system with a specific software configuration.
+    With pulling 'heudiconv', its Docker container and all  dependencies get installed.
 
         ```
         $ docker pull nipy/heudiconv:latest
@@ -146,16 +147,18 @@ HeuDiConv is a flexible DICOM converter for organizing your brain imaging data i
    
     In `for idx, s in enumerate(seqinfo)` you define according to the Dicom metadata which file should be assigned to which key. Here the dicominfo.tsv comes into play. I decided that in order to get assigned to  `t1w` the condition is: `dim1 == 256 and 'MPRAGE_20ch' in s.protocol_name`, as that is specific for the anatomical scans. To get assigned to `func` I decided that the `dim1` has to be `64`, as that was specific for the funktional runs.
 
+    I placed the heuristic file in a seperate 'code' folder inside the Nifit folder.
+
 4. **Converting all:**
 
-    After changing the heuristic.py the conversion party can begin with the follow command:
+    After changing the heuristic.py the conversion party can begin with the follow command (subject 03 was excluded, as there were problems with the files):
 
     ```
-     docker run --rm -it -v /mnt/d/Data:/base nipy/heudiconv:latest -d /base/Dicoms/sub-{subject}/*/*/*/* -o /base/NiFTi/ -f /base/NiFTi/code/heuristic.py -s 01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 -c dcm2niix -b --overwrite
+     docker run --rm -it -v /mnt/d/Data:/base nipy/heudiconv:latest -d /base/Dicoms/sub-{subject}/*/*/*/* -o /base/NiFTi/ -f /base/NiFTi/code/heuristic.py -s 01 02 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 -c dcm2niix -b --overwrite
     ```
     It ist similar to the one used before, but with some important changes:
 
-    `-f`: the path to the heuristic file
+    `-f`: the path to the heuristic file in the 'code' folder
 
     `-s`: is a list and now all subjects will be converted
 
