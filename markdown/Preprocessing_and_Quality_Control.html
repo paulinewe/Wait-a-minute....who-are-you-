@@ -368,12 +368,19 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-with-fmriprep">Preprocessing with fMRIprep</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitiy-control-with-mriqc">Qualitiy Control with MRIQC</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principles">Principles</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process">Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-mriqc-with-docker">Running MRIQC with Docker</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-with-fmriprep">Preprocessing with fMRIprep</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Principles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-fmriprep-with-docker">Running fMRIprep with Docker</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -388,12 +395,75 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="preprocessing-and-qualitiy-control">
 <h1>Preprocessing and Qualitiy Control<a class="headerlink" href="#preprocessing-and-qualitiy-control" title="Permalink to this heading">#</a></h1>
 <p>Capacity and time limits stopped me from doing preprocessing, as my laptop already was working on its limits during the conversion and after that I had to move a way from Frankfurt so I also was not able to do it in the Lab. Nevertheless I will describe, what I would have done to preprocess my data on a local machine. To do so, I want to introduce you to <a class="reference external" href="https://fmriprep.org/en/stable/">fMRIprep</a> and <a class="reference external" href="https://mriqc.readthedocs.io/en/latest/">MRIQC</a>.</p>
+<section id="qualitiy-control-with-mriqc">
+<h2>Qualitiy Control with MRIQC<a class="headerlink" href="#qualitiy-control-with-mriqc" title="Permalink to this heading">#</a></h2>
+<p>Visual inspection of fMRI is error-prone and unpractical the more images are part of a data set, therefore is an automated tool developed for robust and accurate qualitiy assessment. It extractes image quality metrics from structural and functional MRI data. Using this tool helps to filter and descide on the further usage or exclusion of participants images.</p>
+<section id="principles">
+<h3>Principles<a class="headerlink" href="#principles" title="Permalink to this heading">#</a></h3>
+<p>The developement of the tool is based on the following principles <a class="footnote-reference brackets" href="#id6" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
+<ol class="arabic">
+<li><p><strong>Modularity and integrability</strong></p>
+<p>The workflow of MRIQC integrates sub-workflows that based on third party software toolboxes such as FSL, ANTs and AFNI.</p>
+</li>
+<li><p><strong>Minimal Preprocessing</strong></p>
+<p>The workflow should be as minimal as possible to estimate the image qualitiy metrics from original data or minimally processed data.</p>
+</li>
+<li><p><strong>Interoperability and standards</strong></p>
+<p>MRIQC follows the BIDS stanardization.</p>
+</li>
+<li><p><strong>Reliability and robustness</strong></p>
+<p>The tool is reqularly checked for its robustness against data variablity as well as its reliability.</p>
+</li>
+</ol>
+</section>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.docker.com/desktop/windows/wsl/">Docker Desktop</a></p></li>
+<li><p>Ubuntu 20.04 LTS or any latest version or WSL</p></li>
+<li><p>data set in BIDS format</p></li>
+</ul>
+</section>
+<section id="running-mriqc-with-docker">
+<h3>Running MRIQC with Docker<a class="headerlink" href="#running-mriqc-with-docker" title="Permalink to this heading">#</a></h3>
+<p><em>following the <a class="reference external" href="https://mriqc.readthedocs.io/en/latest/running.html">documentation of MRIQC</a> and <a class="reference external" href="https://bircibrain.github.io/computingguide/docs/fmri-preprocessing/mriqc.html">BIRC Computing Guide</a></em></p>
+<ol class="arabic">
+<li><p><strong>Setting up the environment</strong></p>
+<p>As in the <span class="xref myst">conversion</span> Docker comes in handy for the qulaitiy control of the brain images. Therefore is is necessary to pull the corresponding container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="n">nipreps</span><span class="o">/</span><span class="n">mriqc</span><span class="p">:</span><span class="n">latest</span> <span class="o">--</span><span class="n">version</span>
+</pre></div>
+</div>
+<p>You will need to have your ‘BIDS-data’ in a seperate folder and a one for the output.</p>
+</li>
+<li><p><strong>Quality Control for Subjects</strong></p>
+<p>Now the analysis for all <code class="docutils literal notranslate"><span class="pre">subjects</span></code> can be done with the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Nifti</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="p">:</span><span class="n">ro</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">QC</span><span class="p">:</span><span class="o">/</span><span class="n">out</span> <span class="n">nipreps</span><span class="o">/</span><span class="n">mriqc</span><span class="p">:</span><span class="n">latest</span> <span class="o">/</span><span class="n">data</span> <span class="o">/</span><span class="n">out</span> <span class="n">participant</span>
+</pre></div>
+</div>
+<p>If you want to analysis particular subjects, you can specify with <code class="docutils literal notranslate"><span class="pre">--participant_label</span></code>.</p>
+</li>
+<li><p><strong>Quality Control on Group-Level</strong></p>
+<p>After running MRIQC for all subjects, the group level report can be generated.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">-</span><span class="n">it</span> <span class="o">--</span><span class="n">rm</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Nifti</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="p">:</span><span class="n">ro</span> <span class="o">-</span><span class="n">v</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">QC</span><span class="p">:</span><span class="o">/</span><span class="n">out</span> <span class="n">nipreps</span><span class="o">/</span><span class="n">mriqc</span><span class="p">:</span><span class="n">latest</span> <span class="o">/</span><span class="n">data</span> <span class="o">/</span><span class="n">out</span> <span class="n">group</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The process of MRIQC can be fully customized, <a class="reference external" href="https://mriqc.readthedocs.io/en/latest/running.html">see</a></p>
+<ol class="arabic" start="4">
+<li><p><strong>Outputs</strong></p>
+<p><em>Individual reports</em>: MRIQC generates individual reports with mosaic views of a number of cutting planes and additional information. Based on that you can visualize those images flagged as low-quality by the classifier and sort them out.</p>
+<p><em>Group report</em>: shows a scatter plot for each of the image qulaitiy measures from which it is  easy to identify outliers for each metric. The plots are interactive and by clicking on a sample the corresponding individual report appears.</p>
+</li>
+</ol>
+</section>
+</section>
 <section id="preprocessing-with-fmriprep">
 <h2>Preprocessing with fMRIprep<a class="headerlink" href="#preprocessing-with-fmriprep" title="Permalink to this heading">#</a></h2>
 <p>To preprocess task-based or resting-state functional fMRI is fMRIprep a robust open-source application, providing piplines to preprocess the relevant data.</p>
-<section id="principles">
-<h3>Principles<a class="headerlink" href="#principles" title="Permalink to this heading">#</a></h3>
-<p>It has three core strengths of fMRIprep <a class="footnote-reference brackets" href="#id3" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id4" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
+<section id="id2">
+<h3>Principles<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>It has three core strengths of fMRIprep <a class="footnote-reference brackets" href="#id7" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id8" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>:</p>
 <ol class="arabic">
 <li><p><strong>Robustness</strong></p>
 <p>The pipeline adapts according to the input data without great loss in quality of outputs, meaning the results are as good as possible independently of scanner, scanning parameters or additional correction scans.</p>
@@ -406,26 +476,26 @@ document.write(`
 </li>
 </ol>
 </section>
-<section id="requirements">
-<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this heading">#</a></h3>
+<section id="id5">
+<h3>Requirements<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://docs.docker.com/desktop/windows/wsl/">Docker Desktop</a></p></li>
 <li><p>Ubuntu 20.04 LTS or any latest version or WSL</p></li>
 <li><p>data set in BIDS format</p></li>
 </ul>
 </section>
-<section id="process">
-<h3>Process<a class="headerlink" href="#process" title="Permalink to this heading">#</a></h3>
+<section id="running-fmriprep-with-docker">
+<h3>Running fMRIprep with Docker<a class="headerlink" href="#running-fmriprep-with-docker" title="Permalink to this heading">#</a></h3>
 <p><em>following the tutorial from <a class="reference external" href="https://lukas-snoek.com/NI-edu/fMRI-introduction/week_4/fmriprep.html">Lukas Snoek</a> and <a class="reference external" href="https://bircibrain.github.io/computingguide/docs/fmri-preprocessing/fmriprep.html">BIRC Computing Guide</a></em></p>
 <ol class="arabic">
 <li><p><strong>Setting up the enviroment</strong></p>
-<p>Similar to the conversion, it is possible to install fMRIprep via Docker by installing the container. Installing fMRIprep to docker can simplely be done with the following command:</p>
+<p>Again, it is possible to install fMRIprep via Docker by installing the container. Installing fMRIprep to Docker can simplely be done with the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span>
 </pre></div>
 </div>
 <p>In order to run surface processing features the <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/fswiki/License">FreeSurfer license</a> needs to be downloaded. Just put it in a code folder (use the one from the conversion) inside your Nifti folder.</p>
 </li>
-<li><p>*<em>Preprocessing</em></p>
+<li><p><strong>Preprocessing</strong></p>
 <p>To start preprocessing the data, use the following command. Provide the BIDS-folder that should be preprocessed, an output folder and add the license.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fmriprep</span><span class="o">-</span><span class="n">docker</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Nifti</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">prepro</span> <span class="o">--</span><span class="n">fs</span><span class="o">-</span><span class="n">license</span><span class="o">-</span><span class="n">file</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Nifti</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">license</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
@@ -436,24 +506,34 @@ Next to what and what not to process, fMRIpreps performance can be adapted depen
 <p><strong>Output spaces</strong>
 Witn the –output-spaces flag you can tell Fmriprep to what spaces you want your preprocessed data registered, like registering your functional data to the participant’s T1 scan (that is called registration). In addition, you can also specify a standard template, like the MNI template for spatial normalization.</p>
  <details>
- <summary>Registration and Normalization</summary>
- <p> The human brain is in general quit similiar between people, but  there are still differences in siza and shape and to perform group-level analysis it is necessary to ensure that the voxels in brain A represent the same structure in brain B. Therefore the brain images need to be normalized and registered. For normalization, firstly the anatomical brain image is matched to a template with standard dimensions and coordinates. The transformations can then be applied to the functional scan, so that anatomical nd functional are aligned, which is called registration. [^3]</p>
+ <summary>Registration and Normalization </summary>
+ <p> The human brain is in general quit similiar between people, but  there are still differences in siza and shape and to perform group-level analysis it is necessary to ensure that the voxels in brain A represent the same structure in brain B. Therefore the brain images need to be normalized and registered. For normalization, firstly the anatomical brain image is matched to a template with standard dimensions and coordinates. The transformations can then be applied to the functional scan, so that anatomical nd functional are aligned, which is called registration.
+<p><a class="reference external" href="https://andysbrainbook.readthedocs.io/en/latest/fMRI_Short_Course/Preprocessing/Registration_Normalization.html#normalization-smoothing-and-statistical-power">https://andysbrainbook.readthedocs.io/en/latest/fMRI_Short_Course/Preprocessing/Registration_Normalization.html#normalization-smoothing-and-statistical-power</a></p>
+ </p>
  </details>
-<blockquote>
-<div><p>All other possiblities can be found <a class="reference external" href="https://fmriprep.org/en/stable/usage.html">here</a>.</p>
-</div></blockquote>
+<p>All other possiblities can be found <a class="reference external" href="https://fmriprep.org/en/stable/usage.html">here</a>.</p>
+</li>
+<li><p><strong>Outputs</strong></p>
+<p>For output fMRIprep provides a directory for each subject with the figures from the preprocessing stages, the preprocessed anatomical and functional files and a summary and all figures in a HTML-file.</p>
 </li>
 </ol>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="id3" role="note">
+<aside class="footnote brackets" id="id6" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Esteban O, Birman D, Schaer M, Koyejo OO, Poldrack RA, Gorgolewski KJ; MRIQC: Advancing the Automatic Prediction of Image Quality in MRI from Unseen Sites; PLOS ONE 12(9):e0184661; doi:10.1371/journal.pone.0184661.</p>
+</aside>
+<aside class="footnote brackets" id="id7" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
 <p>Esteban, O., Markiewicz, C.J., Blair, R.W. et al. fMRIPrep: a robust preprocessing pipeline for functional MRI. Nat Methods 16, 111–116 (2019). <a class="reference external" href="https://doi.org/10.1038/s41592-018-0235-4">https://doi.org/10.1038/s41592-018-0235-4</a></p>
 </aside>
-<aside class="footnote brackets" id="id4" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<aside class="footnote brackets" id="id8" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
 <p>Esteban, O., Ciric, R., Finc, K. et al. Analysis of task-based functional MRI data preprocessed with fMRIPrep. Nat Protoc 15, 2186–2202 (2020). <a class="reference external" href="https://doi.org/10.1038/s41596-020-0327-3">https://doi.org/10.1038/s41596-020-0327-3</a></p>
 </aside>
-</section>
 </section>
 </section>
 
@@ -500,12 +580,19 @@ Witn the –output-spaces flag you can tell Fmriprep to what spaces you want you
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-with-fmriprep">Preprocessing with fMRIprep</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitiy-control-with-mriqc">Qualitiy Control with MRIQC</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#principles">Principles</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process">Process</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-mriqc-with-docker">Running MRIQC with Docker</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-with-fmriprep">Preprocessing with fMRIprep</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Principles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-fmriprep-with-docker">Running fMRIprep with Docker</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
