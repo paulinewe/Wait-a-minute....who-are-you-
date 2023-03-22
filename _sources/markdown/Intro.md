@@ -41,7 +41,7 @@ The data used for this analysis comes from the paper "Person identity-specific a
 
 They showed, that the difference of highly variable, ambient images of the same versus different identities was only significant for the FFA. For the OFA they showed significantly lower activation for conditions where expectations are violated compared with alternating identities.
 
-> Aim of Whoru: To get to a more detailed understanding of the differences between the conditions and the brain regions with a classification problem.
+> Aim of Whoru: To get to a more detailed understanding of the differences between the conditions and the brain regions with a classification problem and provide evidence on where person identity information is processed.
 
 
 

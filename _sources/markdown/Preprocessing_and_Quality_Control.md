@@ -41,7 +41,7 @@ The developement of the tool is based on the following principles [^1]:
     As in the [conversion](./BIDS-Conversion.md/#dicom-conversion) Docker comes in handy for the qulaitiy control of the brain images. Therefore is is necessary to pull the corresponding container.
 
     ```
-    docker run -it nipreps/mriqc:latest --version
+    docker pull poldracklab/mriqc:latest
     ```
     You will need to have your 'BIDS-data' in a seperate folder and a one for the output.
 
