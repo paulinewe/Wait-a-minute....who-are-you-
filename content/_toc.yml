@@ -5,7 +5,7 @@ chapters:
 - file: markdown/Documentation.md
 - file: markdown/BIDS-Conversion.md
 - file: markdown/Preprocessing_and_Quality_Control.md
-- file: code/Exploration.ipynb
+- file: markdown/Data_Exploration.md
 - file: markdown/Neuroquery.md
 - file: code/Brainmap.ipynb
 - file: markdown/Discussion.md
