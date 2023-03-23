@@ -168,6 +168,7 @@ HeuDiConv is a flexible DICOM converter for organizing your brain imaging data i
 
 With that being done, it is almost ready. One last step is to validate the data set to make sure it is now in the BIDS format and nothing is missing. Which can be easily done with http://bids-standard.github.io/bids-validator/.
 
+My data set is still not validate as the event files are incomplete.
 
 # References
 

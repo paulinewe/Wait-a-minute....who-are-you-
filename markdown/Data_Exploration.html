@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Exploration &#8212; Whoru</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script async="async" kind="hypothesis" src="https://hypothes.is/embed.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'markdown/Data_Exploration';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Neuroquery" href="Neuroquery.html" />
+    <link rel="prev" title="Preprocessing and Qualitiy Control" href="Preprocessing_and_Quality_Control.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Whoru</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Welcome!
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Documentation.html">Documentation</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="BIDS-Conversion.html">BIDS-Conversion</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="Preprocessing_and_Quality_Control.html">Preprocessing and Qualitiy Control</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Data Exploration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Neuroquery.html">Neuroquery</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../code/Brainmap.html">Brain map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/paulinewe/Whoru.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/paulinewe/Whoru.git/edit/main/content/markdown/Data_Exploration.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/paulinewe/Whoru.git/issues/new?title=Issue%20on%20page%20%2Fmarkdown/Data_Exploration.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/markdown/Data_Exploration.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Exploration</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomical-exploration">Anatomical exploration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-exploration">Functional Exploration</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-exploration">
+<h1>Data Exploration<a class="headerlink" href="#data-exploration" title="Permalink to this heading">#</a></h1>
+<p>As I have to keep up the privacy I cannot show images, therefore I will not provide a juypterbook and present my outputs here.</p>
+<p>For looking at a data set, <a class="reference external" href="https://nilearn.github.io/stable/index.html">Nilearn</a> is a tool one can use for analyses of brain volumes. It provides statistical and machine-learning tools and an instructive documentation.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Structure</p></li>
+</ol>
+<p>First, we want to get an overview of the data in the BIDS data set. Therefore we use the module <code class="docutils literal notranslate"><span class="pre">bids</span></code>and set the path to the data set.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bids</span> 
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;Nifti&quot;</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">bids</span><span class="o">.</span><span class="n">BIDSLayout</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will give some information on the amount of subjects, sessions and runs of the data set. Next we can look at what task were done.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">BIDS</span> <span class="n">Layout</span><span class="p">:</span> <span class="o">.../</span><span class="n">mnt</span><span class="o">/</span><span class="n">d</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">Nifti</span> <span class="o">|</span> <span class="n">Subjects</span><span class="p">:</span> <span class="mi">29</span> <span class="o">|</span> <span class="n">Sessions</span><span class="p">:</span> <span class="mi">0</span> <span class="o">|</span> <span class="n">Runs</span><span class="p">:</span> <span class="mi">116</span>
+</pre></div>
+</div>
+<p>The data set originally has 30 subjects. In the paper 6 subjects where excluded, but there is no documenation on which. I excluded 03 as something was off with the data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tasks</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_tasks</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">rest</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>In the case of this data set, there is only one task but 4 conditions (ADA, ALT, ALT-II, EV). Further the data set contains functional and anatomical images and after conversion also in Nifit file format.</p>
+<ol class="arabic simple" start="2">
+<li><p>Entities
+Next we can look at the entities that can be detected. The following code will provide huge list of parameters.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layout_entities</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_entities</span><span class="p">()</span>
+<span class="n">layout_entities</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;subject&#39;</span><span class="p">,</span> <span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="s1">&#39;task&#39;</span><span class="p">,</span> <span class="s1">&#39;acquisition&#39;</span><span class="p">,</span> <span class="s1">&#39;ceagent&#39;</span><span class="p">,</span> <span class="s1">&#39;staining&#39;</span><span class="p">,</span> <span class="s1">&#39;tracer&#39;</span><span class="p">,</span> <span class="s1">&#39;reconstruction&#39;</span><span class="p">,</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;run&#39;</span><span class="p">,</span> <span class="s1">&#39;proc&#39;</span><span class="p">,</span> <span class="s1">&#39;modality&#39;</span><span class="p">,</span> <span class="s1">&#39;echo&#39;</span><span class="p">,</span> <span class="s1">&#39;flip&#39;</span><span class="p">,</span> <span class="s1">&#39;inv&#39;</span><span class="p">,</span> <span class="s1">&#39;mt&#39;</span><span class="p">,</span> <span class="s1">&#39;part&#39;</span><span class="p">,</span> <span class="s1">&#39;recording&#39;</span><span class="p">,</span> <span class="s1">&#39;space&#39;</span><span class="p">,</span> <span class="s1">&#39;chunk&#39;</span><span class="p">,</span> <span class="s1">&#39;suffix&#39;</span><span class="p">,</span> <span class="s1">&#39;scans&#39;</span><span class="p">,</span> <span class="s1">&#39;fmap&#39;</span><span class="p">,</span> <span class="s1">&#39;datatype&#39;</span><span class="p">,</span> <span class="s1">&#39;extension&#39;</span><span class="p">,</span> <span class="s1">&#39;participant_id&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span> <span class="s1">&#39;AcquisitionMatrixPE&#39;</span><span class="p">,</span> <span class="s1">&#39;AcquisitionNumber&#39;</span><span class="p">,</span> <span class="s1">&#39;AcquisitionTime&#39;</span><span class="p">,</span> <span class="s1">&#39;BaseResolution&#39;</span><span class="p">,</span> <span class="s1">&#39;BodyPartExamined&#39;</span><span class="p">,</span> <span class="s1">&#39;CoilCombinationMethod&#39;</span><span class="p">,</span> <span class="s1">&#39;ConsistencyInfo&#39;</span><span class="p">,</span> <span class="s1">&#39;ConversionSoftware&#39;</span><span class="p">,</span> <span class="s1">&#39;ConversionSoftwareVersion&#39;</span><span class="p">,</span> <span class="s1">&#39;DeviceSerialNumber&#39;</span><span class="p">,</span> <span class="s1">&#39;DwellTime&#39;</span><span class="p">,</span> <span class="s1">&#39;EchoTime&#39;</span><span class="p">,</span> <span class="s1">&#39;FlipAngle&#39;</span><span class="p">,</span> <span class="s1">&#39;HeudiconvVersion&#39;</span><span class="p">,</span> <span class="s1">&#39;ImageOrientationPatientDICOM&#39;</span><span class="p">,</span> <span class="s1">&#39;ImageOrientationText&#39;</span><span class="p">,</span> <span class="s1">&#39;ImageType&#39;</span><span class="p">,</span> <span class="s1">&#39;ImagingFrequency&#39;</span><span class="p">,</span> <span class="s1">&#39;InPlanePhaseEncodingDirectionDICOM&#39;</span><span class="p">,</span> <span class="s1">&#39;InstitutionAddress&#39;</span><span class="p">,</span> <span class="s1">&#39;InstitutionName&#39;</span><span class="p">,</span> <span class="s1">&#39;InstitutionalDepartmentName&#39;</span><span class="p">,</span> <span class="s1">&#39;InversionTime&#39;</span><span class="p">,</span> <span class="s1">&#39;MRAcquisitionType&#39;</span><span class="p">,</span> <span class="s1">&#39;MagneticFieldStrength&#39;</span><span class="p">,</span> <span class="s1">&#39;Manufacturer&#39;</span><span class="p">,</span> <span class="s1">&#39;ManufacturersModelName&#39;</span><span class="p">,</span> <span class="s1">&#39;MatrixCoilMode&#39;</span><span class="p">,</span> <span class="s1">&#39;Modality&#39;</span><span class="p">,</span> <span class="s1">&#39;NonlinearGradientCorrection&#39;</span><span class="p">,</span> <span class="s1">&#39;ParallelReductionFactorInPlane&#39;</span><span class="p">,</span> <span class="s1">&#39;PartialFourier&#39;</span><span class="p">,</span> <span class="s1">&#39;PatientPosition&#39;</span><span class="p">,</span> <span class="s1">&#39;PercentPhaseFOV&#39;</span><span class="p">,</span> <span class="s1">&#39;PercentSampling&#39;</span><span class="p">,</span> <span class="s1">&#39;PhaseEncodingSteps&#39;</span><span class="p">,</span> <span class="s1">&#39;PhaseResolution&#39;</span><span class="p">,</span> <span class="s1">&#39;PixelBandwidth&#39;</span><span class="p">,</span> <span class="s1">&#39;ProcedureStepDescription&#39;</span><span class="p">,</span> <span class="s1">&#39;ProtocolName&#39;</span><span class="p">,</span> <span class="s1">&#39;PulseSequenceDetails&#39;</span><span class="p">,</span> <span class="s1">&#39;ReceiveCoilActiveElements&#39;</span><span class="p">,</span> <span class="s1">&#39;ReceiveCoilName&#39;</span><span class="p">,</span> <span class="s1">&#39;ReconMatrixPE&#39;</span><span class="p">,</span> <span class="s1">&#39;RefLinesPE&#39;</span><span class="p">,</span> <span class="s1">&#39;RepetitionTime&#39;</span><span class="p">,</span> <span class="s1">&#39;SAR&#39;</span><span class="p">,</span> <span class="s1">&#39;ScanOptions&#39;</span><span class="p">,</span> <span class="s1">&#39;ScanningSequence&#39;</span><span class="p">,</span> <span class="s1">&#39;SequenceName&#39;</span><span class="p">,</span> <span class="s1">&#39;SequenceVariant&#39;</span><span class="p">,</span> <span class="s1">&#39;SeriesDescription&#39;</span><span class="p">,</span> <span class="s1">&#39;SeriesNumber&#39;</span><span class="p">,</span> <span class="s1">&#39;ShimSetting&#39;</span><span class="p">,</span> <span class="s1">&#39;SliceThickness&#39;</span><span class="p">,</span> <span class="s1">&#39;SoftwareVersions&#39;</span><span class="p">,</span> <span class="s1">&#39;SpoilingState&#39;</span><span class="p">,</span> <span class="s1">&#39;StationName&#39;</span><span class="p">,</span> <span class="s1">&#39;TxRefAmp&#39;</span><span class="p">,</span> <span class="s1">&#39;BandwidthPerPixelPhaseEncode&#39;</span><span class="p">,</span> <span class="s1">&#39;CogAtlasID&#39;</span><span class="p">,</span> <span class="s1">&#39;DerivedVendorReportedEchoSpacing&#39;</span><span class="p">,</span> <span class="s1">&#39;EchoTrainLength&#39;</span><span class="p">,</span> <span class="s1">&#39;EffectiveEchoSpacing&#39;</span><span class="p">,</span> <span class="s1">&#39;PhaseEncodingDirection&#39;</span><span class="p">,</span> <span class="s1">&#39;SpacingBetweenSlices&#39;</span><span class="p">,</span> <span class="s1">&#39;TaskName&#39;</span><span class="p">,</span> <span class="s1">&#39;TotalReadoutTime&#39;</span><span class="p">,</span> <span class="s1">&#39;SliceTiming&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;acq_time&#39;</span><span class="p">,</span> <span class="s1">&#39;operator&#39;</span><span class="p">,</span> <span class="s1">&#39;randstr&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>General report</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bids.reports</span> <span class="kn">import</span> <span class="n">BIDSReport</span> 
+<span class="n">report</span> <span class="o">=</span> <span class="n">BIDSReport</span><span class="p">(</span><span class="n">layout</span><span class="p">);</span>
+<span class="n">counter</span> <span class="o">=</span> <span class="n">report</span><span class="o">.</span><span class="n">generate</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Number</span> <span class="n">of</span> <span class="n">patterns</span> <span class="n">detected</span><span class="p">:</span> <span class="mi">11</span>
+<span class="n">Remember</span> <span class="n">to</span> <span class="n">double</span><span class="o">-</span><span class="n">check</span> <span class="n">everything</span> <span class="ow">and</span> <span class="n">to</span> <span class="n">replace</span> <span class="o">&lt;</span><span class="n">deg</span><span class="o">&gt;</span> <span class="k">with</span> <span class="n">a</span> <span class="n">degree</span> <span class="n">symbol</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">general_report</span> <span class="o">=</span> <span class="n">counter</span><span class="o">.</span><span class="n">most_common</span><span class="p">()[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">general_report</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will present an report on scanning process and the conversion of the files.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="n">session</span> <span class="kc">None</span><span class="p">,</span> <span class="n">MR</span> <span class="n">data</span> <span class="n">were</span> <span class="n">acquired</span> <span class="n">using</span> <span class="n">a</span> <span class="mi">3</span><span class="o">-</span><span class="n">Tesla</span> <span class="n">Siemens</span> <span class="n">Prisma_fit</span> <span class="n">MRI</span> <span class="n">scanner</span><span class="o">.</span>
+	<span class="n">One</span> <span class="n">run</span> <span class="n">of</span> <span class="n">T1</span><span class="o">-</span><span class="n">weighted</span> <span class="n">SK</span>\<span class="n">SP</span>\<span class="n">MP</span> <span class="n">GR</span>\<span class="n">IR</span> <span class="p">(</span><span class="n">GR</span>\<span class="n">IR</span><span class="p">)</span> <span class="n">single</span><span class="o">-</span><span class="n">echo</span> <span class="n">structural</span> <span class="n">MRI</span> <span class="n">data</span> <span class="n">were</span> <span class="n">collected</span> <span class="p">(</span><span class="mi">256</span> <span class="n">slices</span><span class="p">;</span> <span class="n">repetition</span> <span class="n">time</span><span class="p">,</span> <span class="n">TR</span><span class="o">=</span><span class="mi">2300</span><span class="n">ms</span><span class="p">;</span> <span class="n">echo</span> <span class="n">time</span><span class="p">,</span> <span class="n">TE</span><span class="o">=</span><span class="mf">3.03</span><span class="n">ms</span><span class="p">;</span> <span class="n">flip</span> <span class="n">angle</span><span class="p">,</span> <span class="n">FA</span><span class="o">=</span><span class="mi">9</span><span class="o">&lt;</span><span class="n">deg</span><span class="o">&gt;</span><span class="p">;</span> <span class="n">field</span> <span class="n">of</span> <span class="n">view</span><span class="p">,</span> <span class="n">FOV</span><span class="o">=</span><span class="mi">192</span><span class="n">x256mm</span><span class="p">;</span> <span class="n">matrix</span> <span class="n">size</span><span class="o">=</span><span class="mi">192</span><span class="n">x256</span><span class="p">;</span> <span class="n">voxel</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="n">x1x1mm</span><span class="p">)</span><span class="o">.</span>
+	<span class="n">Four</span> <span class="n">runs</span> <span class="n">of</span> <span class="n">rest</span> <span class="n">segmented</span> <span class="n">k</span><span class="o">-</span><span class="n">space</span> <span class="n">echo</span> <span class="n">planar</span> <span class="p">(</span><span class="n">EP</span><span class="p">)</span> <span class="n">single</span><span class="o">-</span><span class="n">echo</span> <span class="n">fMRI</span> <span class="n">data</span> <span class="n">were</span> <span class="n">collected</span> <span class="p">(</span><span class="mi">35</span> <span class="n">slices</span> <span class="ow">in</span> <span class="n">interleaved</span> <span class="n">ascending</span> <span class="n">order</span><span class="p">;</span> <span class="n">repetition</span> <span class="n">time</span><span class="p">,</span> <span class="n">TR</span><span class="o">=</span><span class="mi">2000</span><span class="n">ms</span><span class="p">;</span> <span class="n">echo</span> <span class="n">time</span><span class="p">,</span> <span class="n">TE</span><span class="o">=</span><span class="mi">30</span><span class="n">ms</span><span class="p">;</span> <span class="n">flip</span> <span class="n">angle</span><span class="p">,</span> <span class="n">FA</span><span class="o">=</span><span class="mi">90</span><span class="o">&lt;</span><span class="n">deg</span><span class="o">&gt;</span><span class="p">;</span> <span class="n">field</span> <span class="n">of</span> <span class="n">view</span><span class="p">,</span> <span class="n">FOV</span><span class="o">=</span><span class="mi">192</span><span class="n">x192mm</span><span class="p">;</span> <span class="n">matrix</span> <span class="n">size</span><span class="o">=</span><span class="mi">64</span><span class="n">x64</span><span class="p">;</span> <span class="n">voxel</span> <span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="n">x3x3mm</span><span class="p">;</span> <span class="ow">in</span><span class="o">-</span><span class="n">plane</span> <span class="n">acceleration</span> <span class="n">factor</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span> <span class="n">Run</span> <span class="n">duration</span> <span class="n">was</span> <span class="mi">10</span><span class="p">:</span><span class="mi">44</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">48</span> <span class="n">minutes</span><span class="p">,</span> <span class="n">during</span> <span class="n">which</span> <span class="mi">322</span><span class="o">-</span><span class="mi">324</span> <span class="n">volumes</span> <span class="n">were</span> <span class="n">acquired</span><span class="o">.</span>
+
+<span class="n">Dicoms</span> <span class="n">were</span> <span class="n">converted</span> <span class="n">to</span> <span class="n">NIfTI</span><span class="o">-</span><span class="mi">1</span> <span class="nb">format</span> <span class="n">using</span> <span class="n">dcm2niix</span> <span class="p">(</span><span class="n">v1</span><span class="mf">.0.20220720</span><span class="p">)</span><span class="o">.</span> <span class="n">This</span> <span class="n">section</span> <span class="n">was</span> <span class="p">(</span><span class="ow">in</span> <span class="n">part</span><span class="p">)</span> <span class="n">generated</span> <span class="n">automatically</span> <span class="n">using</span> <span class="n">pybids</span> <span class="p">(</span><span class="mf">0.15.6</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="anatomical-exploration">
+<h2>Anatomical exploration<a class="headerlink" href="#anatomical-exploration" title="Permalink to this heading">#</a></h2>
+<p>First we want to plot images.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
+<span class="kn">import</span> <span class="nn">pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nb</span>
+
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="c1">#loading an image</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/mnt/d/Data/Nifti/sub-01/anat/sub-01_T1w.nii.gz&#39;</span><span class="p">)</span>
+<span class="c1">#getting a picture</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will result in an anatomical image. Here you see a screeshot of the image, as I needed to keep the privacy of the participatns.</p>
+<p><img alt="anat" src="../_images/anat.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will provide us with als informations of the image like meta-data, ata shape, dimensions, affine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Image&#39;&gt;
+data shape (192, 256, 256)
+affine: 
+[[ 9.92133796e-01  1.23001680e-01  2.32108962e-02 -1.13634888e+02]
+ [-1.25154376e-01  9.71644998e-01  2.00605050e-01 -1.02728943e+02]
+ [ 2.12200475e-03 -2.01932237e-01  9.79397178e-01 -1.23660866e+02]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+metadata:
+&lt;class &#39;nibabel.nifti1.Nifti1Header&#39;&gt; object, endian=&#39;&lt;&#39;
+sizeof_hdr      : 348
+data_type       : b&#39;&#39;
+db_name         : b&#39;&#39;
+extents         : 0
+session_error   : 0
+regular         : b&#39;r&#39;
+dim_info        : 54
+dim             : [  3 192 256 256   1   1   1   1]
+intent_p1       : 0.0
+intent_p2       : 0.0
+intent_p3       : 0.0
+intent_code     : none
+datatype        : int16
+bitpix          : 16
+slice_start     : 0
+pixdim          : [1.  1.  1.  1.  2.3 0.  0.  0. ]
+vox_offset      : 0.0
+scl_slope       : nan
+scl_inter       : nan
+slice_end       : 0
+slice_code      : unknown
+xyzt_units      : 10
+cal_max         : 0.0
+cal_min         : 0.0
+slice_duration  : 0.0
+toffset         : 0.0
+glmax           : 0
+glmin           : 0
+descrip         : b&#39;TE=3;Time=100151.645;phase=1&#39;
+aux_file        : b&#39;&#39;
+qform_code      : scanner
+sform_code      : scanner
+quatern_b       : -0.10135682
+quatern_c       : 0.005310074
+quatern_d       : -0.062484458
+qoffset_x       : -113.63489
+qoffset_y       : -102.72894
+qoffset_z       : -123.660866
+srow_x          : [ 9.9213380e-01  1.2300168e-01  2.3210896e-02 -1.1363489e+02]
+srow_y          : [  -0.12515438    0.971645      0.20060505 -102.72894   ]
+srow_z          : [ 2.12200475e-03 -2.01932237e-01  9.79397178e-01 -1.23660866e+02]
+intent_name     : b&#39;&#39;
+magic           : b&#39;n+1&#39;
+</pre></div>
+</div>
+</section>
+<section id="functional-exploration">
+<h2>Functional Exploration<a class="headerlink" href="#functional-exploration" title="Permalink to this heading">#</a></h2>
+<p>For the functional file, one would start and look at the event.tsv, but I was not able to get the right information from the matlab files provided.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pymatreader</span> <span class="kn">import</span> <span class="n">read_mat</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">read_mat</span><span class="p">(</span><span class="s1">&#39;/mnt/d/Data/Dicoms/sub-01/Trials/Trials_S01_1.mat&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dict_keys</span><span class="p">([</span><span class="s1">&#39;__header__&#39;</span><span class="p">,</span> <span class="s1">&#39;__version__&#39;</span><span class="p">,</span> <span class="s1">&#39;__globals__&#39;</span><span class="p">,</span> <span class="s1">&#39;Trials&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;Trials&#39;</span><span class="p">])</span>
+<span class="n">mat</span>
+</pre></div>
+</div>
+<p>I recieve a pandas data fram with the following headings:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Sex 
+Condition 	
+Task 	
+img1 	
+img2 	
+img3 	
+img4 	
+img5 	
+img6 	
+img7 	
+img8 	
+ITI 	
+jitterX 	
+jitterY
+</pre></div>
+</div>
+<p>No information on the structure of the trails.</p>
+<p>So the exploration will be limted to the functional image.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;/mnt/d/Data/Nifti/sub-01/func/sub-01_task-rest_run-001_bold.nii.gz&#39;</span><span class="p">)</span> <span class="c1">#load image</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Similar all informations on the image are provided.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;nibabel.nifti1.Nifti1Image&#39;&gt;
+data shape (64, 64, 35, 323)
+affine: 
+[[-2.97289515e+00  3.95612538e-01 -7.33844489e-02  7.86555252e+01]
+ [ 4.01258558e-01  2.87454200e+00 -7.58946180e-01 -7.03041916e+01]
+ [ 2.97673177e-02  7.61904538e-01  2.90148473e+00 -4.22993889e+01]
+ [ 0.00000000e+00  0.00000000e+00  0.00000000e+00  1.00000000e+00]]
+metadata:
+&lt;class &#39;nibabel.nifti1.Nifti1Header&#39;&gt; object, endian=&#39;&lt;&#39;
+sizeof_hdr      : 348
+data_type       : b&#39;&#39;
+db_name         : b&#39;&#39;
+extents         : 0
+session_error   : 0
+regular         : b&#39;r&#39;
+dim_info        : 57
+dim             : [  4  64  64  35 323   1   1   1]
+intent_p1       : 0.0
+intent_p2       : 0.0
+intent_p3       : 0.0
+intent_code     : none
+datatype        : int16
+bitpix          : 16
+slice_start     : 0
+pixdim          : [-1.  3.  3.  3.  2.  0.  0.  0.]
+vox_offset      : 0.0
+scl_slope       : nan
+scl_inter       : nan
+slice_end       : 0
+slice_code      : alternating increasing
+xyzt_units      : 10
+cal_max         : 0.0
+cal_min         : 0.0
+slice_duration  : 0.0
+toffset         : 0.0
+glmax           : 0
+glmin           : 0
+descrip         : b&#39;TE=30;Time=93836.678;phase=1&#39;
+aux_file        : b&#39;&#39;
+qform_code      : scanner
+sform_code      : scanner
+quatern_b       : 0.06711173
+quatern_c       : 0.9894831
+quatern_d       : 0.12808461
+qoffset_x       : 78.655525
+qoffset_y       : -70.30419
+qoffset_z       : -42.29939
+srow_x          : [-2.9728951e+00  3.9561254e-01 -7.3384449e-02  7.8655525e+01]
+srow_y          : [  0.40125856   2.874542    -0.7589462  -70.30419   ]
+srow_z          : [ 2.9767318e-02  7.6190454e-01  2.9014847e+00 -4.2299389e+01]
+intent_name     : b&#39;&#39;
+magic           : b&#39;n+1&#39;
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will get us the functional image of run 1 from subject 01.</p>
+<p><img alt="func" src="content/markdown/images/func.png" /></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./markdown"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Preprocessing_and_Quality_Control.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Preprocessing and Qualitiy Control</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Neuroquery.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Neuroquery</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anatomical-exploration">Anatomical exploration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-exploration">Functional Exploration</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Pauline Wetzel# The author of the book
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
