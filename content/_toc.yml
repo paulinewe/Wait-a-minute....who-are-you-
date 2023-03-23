@@ -8,7 +8,7 @@ chapters:
 - file: code/Exploration.ipynb
 - file: markdown/Neuroquery.md
   sections:
-  -file: code/Brainmap.ipynb
+  - file: code/Brainmap.ipynb
 - file: markdown/Results.md
 - file: markdown/Discussion.md
 
