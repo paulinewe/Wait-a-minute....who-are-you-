@@ -30,7 +30,7 @@ You can use the following sections to navigate through the content of the lectur
 * [Preprocessing](./markdown/Preprocessing_and_Quality_Control.md)
 * [Data Exploration](./code/Exploration.ipynb)
 * [Neuroquery](./markdown/Neuroquery.md)
-* [Results](/content/code/Brainmap.ipynb)
+* [Results](./code/Brainmap.ipynb)
 * [Discussion](./markdown/Discussion.md)
 
 
