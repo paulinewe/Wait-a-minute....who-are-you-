@@ -65,7 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'markdown/Neuroquery';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Discussion" href="Discussion.html" />
+    <link rel="next" title="Brain map" href="../code/Brainmap.html" />
     <link rel="prev" title="Example Content" href="../code/Exploration.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -159,6 +159,7 @@ const thebe_selector_output = ".output, .cell_output"
 
 <li class="toctree-l1"><a class="reference internal" href="../code/Exploration.html">Example Content</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Neuroquery</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="Discussion.html">Discussion</a></li>
 </ul>
 
@@ -370,9 +371,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metaanlysis-with-neuroquery">Metaanlysis with Neuroquery</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-for-the-project">Meta-analysis for the project</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Neuroquery</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-with-neuroquery">Meta-analysis with Neuroquery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-for-the-project">Meta-analysis for the project</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-terms">List of terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-the-literature">Evaluation of the literature</a></li>
 </ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -386,9 +396,9 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="neuroquery">
 <h1>Neuroquery<a class="headerlink" href="#neuroquery" title="Permalink to this heading">#</a></h1>
 <p>Due to the problems mentions in the other chapters, I was not able to set up a machine learing approach. Nevertheless, I want to present some result to answer validate the results of the study my project is based on. So to answer where person identity informations are processed and stored, I used a metaanylsis tool called <a class="reference external" href="https://neuroquery.org/about">Neuroquery</a>.</p>
-<section id="metaanlysis-with-neuroquery">
-<h2>Metaanlysis with Neuroquery<a class="headerlink" href="#metaanlysis-with-neuroquery" title="Permalink to this heading">#</a></h2>
-<p>Out there are many neuroscientific papers and each year they get more and more, so finding an answer to a specific question is quiet difficult to do manually. To find a way through the jungle of neuroscientific papers and make collecting and aggregating them faster, easier and automated, Dockès et al. <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> developed Neuroquery.
+<section id="meta-analysis-with-neuroquery">
+<h2>Meta-analysis with Neuroquery<a class="headerlink" href="#meta-analysis-with-neuroquery" title="Permalink to this heading">#</a></h2>
+<p>Out there are many neuroscientific papers and each year they get more and more, so finding an answer to a specific question is quiet difficult to do manually. To find a way through the jungle of neuroscientific papers and make collecting and aggregating them faster, easier and automated, Dockès et al. <a class="footnote-reference brackets" href="#id25" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> developed Neuroquery.
 What it does, is prediciting neural correlates of neuroscience concepts related to behavior, diseases, or anatomy.
 The predictive frameswork allows to generate brain maps by generalizing from excessively studied terms to less extensively studied terms, that are not accessible to traditional meta-analyses. Neuroquery works in a ‘dynamic, contextually-informed way that allows for mutual interactions’ (p.4). As a result high-quality brain maps are created for infrequently studied concepts. The maps predict spatial distributions of findings from which one can form regions of interest or interpret results of less studied terms. Yet it has to be noted, that the tool does not work with voxel-based null hypthesis. That being said, it is less suited to tell whether an area is activated during a study or not.</p>
 <p>NeuroQuery is an accurate model of the literature’ and approximates well results of actual experimental data collection. It works by modeling the semantic relations underling the vocabulary of neuroscience and makes use of techniques from natural language processing. It makes better use of available information and recovers biologically plausible brain maps. Due to the semantic model, Neuroquery is not so sensitive to variations in terminology and it captures semantic similarities, which helps find related concepts and explore their associations with brain activity. Neuroquery also supports researcher with exploration of the domain knowledge across sub-fields, generation new hypotheses, construction of regions of interest or putting results into perspektive.</p>
@@ -396,13 +406,136 @@ The predictive frameswork allows to generate brain maps by generalizing from exc
 </section>
 <section id="meta-analysis-for-the-project">
 <h2>Meta-analysis for the project<a class="headerlink" href="#meta-analysis-for-the-project" title="Permalink to this heading">#</a></h2>
+<p>So to start with Neuroquery, I need to decicde on what terms I want to enter into the tool. For that we need to look back at the orginal paper. So what they wanted to look at ID-specific processing in the fusiform face area and occipital face area, using ambient images of celebrities and by generating and violating expectations about person ID, they tested if prediction error responses manifest in the neuroimaging signal. The study shows image-independent ID-specific adaptation effects in the FFA for famous familiar faces and in combination with the results of the OFA, the authors suggest that the ID representations in occipito-temporal regions are not yet completely clarified <a class="footnote-reference brackets" href="#id26" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>.</p>
+<blockquote>
+<div><p>Baed on the paper and related, I expect that we will get a brain map that predicts high activation in FFA and OFA.</p>
+</div></blockquote>
+<p>Based on that I decided on the following terms:</p>
+<ul class="simple">
+<li><p>face perception</p></li>
+<li><p>identity</p></li>
+<li><p>familiarity</p></li>
+<li><p>face recognition</p></li>
+<li><p>face</p></li>
+<li><p>preddiction error</p></li>
+</ul>
+<p><img alt="neuroquery" src="../_images/neuroquery.png" /></p>
+<p>After entering the terms in Neuroquery, I got this table, the <span class="xref myst">brain map</span> with the predicted brain areas and a list of related papers.</p>
+<p>Let’s have a look at the table first.</p>
+<section id="list-of-terms">
+<h3>List of terms<a class="headerlink" href="#list-of-terms" title="Permalink to this heading">#</a></h3>
+<p>Neuroquery builds a list of the term in your query, meaning the words recognized in the entered text and termns in expansion, so terms that are related to the entered ones. The table provides measures for similarity to the query and the weight in the brain map. Similarity to the query means the similarity of a term to terms in the query. It is modulated by how many times these terms are mentioned in the query and the measure is based on the co-occurrences of the terms in the literature<a class="footnote-reference brackets" href="#id27" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. Face, face recognition, prediction error and face perception stand-out in terms of similiarity.
+The weight in the brain map describes how much each term contributes to the <span class="xref myst">brain map</span>. We see that the term face conributes mainly to the brain map, which is not a suprise as it captures everything regarding faces<a class="footnote-reference brackets" href="#id27" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. Small contributions come from ‘face recognition’ and the related terms in the expansion from which the term ‘ffa’ contributes most.</p>
+</section>
+<section id="evaluation-of-the-literature">
+<h3>Evaluation of the literature<a class="headerlink" href="#evaluation-of-the-literature" title="Permalink to this heading">#</a></h3>
+<p>The tool list the most relevant publications related to the query, but keep in mind that it is based on the articles it is trained on. (14,000 full-text publications and 400,000 peak activations).</p>
+<p>Some of the literature captures more general the brain regions related to face recognition<a class="footnote-reference brackets" href="#id28" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#id29" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id30" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id31" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id32" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id33" id="id10" role="doc-noteref"><span class="fn-bracket">[</span>18<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id34" id="id11" role="doc-noteref"><span class="fn-bracket">[</span>21<span class="fn-bracket">]</span></a> and familiarity<a class="footnote-reference brackets" href="#id35" id="id12" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a><a class="footnote-reference brackets" href="#id36" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id37" id="id14" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id38" id="id15" role="doc-noteref"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></a> and do not match the focus of the paper by Rostalski et al.</p>
+<p>There are some studies, that report similar activations as Rostalski et al. but using different approaches. There are studies <a class="footnote-reference brackets" href="#id39" id="id16" role="doc-noteref"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></a> using the repetion-priming paradigm. The authors conclude that the FFA showed only marginal effects of face familiarity and no reliable generalization across different face images. Rostalski et al. found, that FFA discriminates between identities independently of images, but like Pourtois et al., say that a fully image-invariant representation is probably not present in the FFA. Other studies using the fMRI-adaption paradigm and repetion-priming paragdim <a class="footnote-reference brackets" href="#id40" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>14<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id41" id="id18" role="doc-noteref"><span class="fn-bracket">[</span>15<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id42" id="id19" role="doc-noteref"><span class="fn-bracket">[</span>16<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id43" id="id20" role="doc-noteref"><span class="fn-bracket">[</span>17<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id44" id="id21" role="doc-noteref"><span class="fn-bracket">[</span>19<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id45" id="id22" role="doc-noteref"><span class="fn-bracket">[</span>20<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id46" id="id23" role="doc-noteref"><span class="fn-bracket">[</span>22<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#id47" id="id24" role="doc-noteref"><span class="fn-bracket">[</span>23<span class="fn-bracket">]</span></a> also found adaptation to facial identity and face-identity change effects in the FFA and the OFA, but not image-invariant adapation. Similar findings reported Rostalksi et al. between the adaption condition and the violation condition. The OFA was activated by conscious and non-conscious changes to face identity.</p>
+<p>To sum it up, the most studies provided by Neuroquery point in the same direction as the results of the paper by Rostalski et al. It has to be noted, that the eight papers are excluded, as they did not matched the relevant topics and concept this project is about.</p>
+<p><img alt="literaturelist" src="content/markdown/images/litneuro.png" /></p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h1>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="id2" role="note">
+<aside class="footnote brackets" id="id25" role="note">
 <span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
 <p>Jérôme Dockès, Russell A Poldrack, Romain Primet, Hande Gözükan, Tal Yarkoni, Fabian Suchanek, Bertrand Thirion, Gaël Varoquaux (2020) NeuroQuery, comprehensive meta-analysis of human brain mapping eLife 9:e53385
 <a class="reference external" href="https://doi.org/10.7554/eLife.53385">https://doi.org/10.7554/eLife.53385</a></p>
 </aside>
-</section>
+<aside class="footnote brackets" id="id26" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Rostalski, S.-M., Robinson, J. E., Ambrus, G. G., Johnston, P., &amp; Kovács, G. (2022). Person identity-specific adaptation effects in the ventral occipito-temporal cortex. European Journal of Neuroscience, 55( 5), 1232– 1243. <a class="reference external" href="https://doi.org/10.1111/ejn.15604">https://doi.org/10.1111/ejn.15604</a></p>
+</aside>
+<aside class="footnote brackets" id="id27" role="note">
+<span class="label"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id4">2</a>)</span>
+<p><a class="reference external" href="https://neuroquery.org/about">https://neuroquery.org/about</a></p>
+</aside>
+<aside class="footnote brackets" id="id28" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">5</a><span class="fn-bracket">]</span></span>
+<p>Zhen, Z., Fang, H., &amp; Liu, J. (2013). The hierarchical brain network for face recognition. PloS one, 8(3), e59886. <a class="reference external" href="https://doi.org/10.1371/journal.pone.0059886">https://doi.org/10.1371/journal.pone.0059886</a></p>
+</aside>
+<aside class="footnote brackets" id="id29" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">7</a><span class="fn-bracket">]</span></span>
+<p>Huang, L., Song, Y., Li, J., Zhen, Z., Yang, Z., &amp; Liu, J. (2014). Individual differences in cortical face selectivity predict behavioral performance in face recognition. Frontiers in human neuroscience, 8, 483. <a class="reference external" href="https://doi.org/10.3389/fnhum.2014.00483">https://doi.org/10.3389/fnhum.2014.00483</a></p>
+</aside>
+<aside class="footnote brackets" id="id30" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">9</a><span class="fn-bracket">]</span></span>
+<p>Kurth, S., Moyse, E., Bahri, M. A., Salmon, E., &amp; Bastin, C. (2015). Recognition of personally familiar faces and functional connectivity in Alzheimer’s disease. Cortex; a journal devoted to the study of the nervous system and behavior, 67, 59–73. <a class="reference external" href="https://doi.org/10.1016/j.cortex.2015.03.013">https://doi.org/10.1016/j.cortex.2015.03.013</a></p>
+</aside>
+<aside class="footnote brackets" id="id31" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">10</a><span class="fn-bracket">]</span></span>
+<p>Ding, X. P., Fu, G., &amp; Lee, K. (2014). Neural correlates of own- and other-race face recognition in children: a functional near-infrared spectroscopy study. NeuroImage, 85 Pt 1(0 1), 335–344. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2013.07.051">https://doi.org/10.1016/j.neuroimage.2013.07.051</a></p>
+</aside>
+<aside class="footnote brackets" id="id32" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">13</a><span class="fn-bracket">]</span></span>
+<p>Kumfor, F., Hutchings, R., Irish, M., Hodges, J. R., Rhodes, G., Palermo, R., &amp; Piguet, O. (2015). Do I know you? Examining face and object memory in frontotemporal dementia. Neuropsychologia, 71, 101–111. <a class="reference external" href="https://doi.org/10.1016/j.neuropsychologia.2015.03.020">https://doi.org/10.1016/j.neuropsychologia.2015.03.020</a></p>
+</aside>
+<aside class="footnote brackets" id="id33" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">18</a><span class="fn-bracket">]</span></span>
+<p>Nestor, A., Vettel, J. M., &amp; Tarr, M. J. (2008). Task-specific codes for face recognition: how they shape the neural representation of features for detection and individuation. PloS one, 3(12), e3978. <a class="reference external" href="https://doi.org/10.1371/journal.pone.0003978">https://doi.org/10.1371/journal.pone.0003978</a></p>
+</aside>
+<aside class="footnote brackets" id="id34" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">21</a><span class="fn-bracket">]</span></span>
+<p>Zhang, H., Tian, J., Liu, J., Li, J., &amp; Lee, K. (2009). Intrinsically organized network for face perception during the resting state. Neuroscience letters, 454(1), 1–5. <a class="reference external" href="https://doi.org/10.1016/j.neulet.2009.02.054">https://doi.org/10.1016/j.neulet.2009.02.054</a></p>
+</aside>
+<aside class="footnote brackets" id="id35" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">4</a><span class="fn-bracket">]</span></span>
+<p>Gobbini, M. I., &amp; Haxby, J. V. (2006). Neural response to the visual familiarity of faces. Brain research bulletin, 71(1-3), 76–82. <a class="reference external" href="https://doi.org/10.1016/j.brainresbull.2006.08.003">https://doi.org/10.1016/j.brainresbull.2006.08.003</a></p>
+</aside>
+<aside class="footnote brackets" id="id36" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">6</a><span class="fn-bracket">]</span></span>
+<p>Platek, S. M., &amp; Kemp, S. M. (2009). Is family special to the brain? An event-related fMRI study of familiar, familial, and self-face recognition. Neuropsychologia, 47(3), 849–858. <a class="reference external" href="https://doi.org/10.1016/j.neuropsychologia.2008.12.027">https://doi.org/10.1016/j.neuropsychologia.2008.12.027</a></p>
+</aside>
+<aside class="footnote brackets" id="id37" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">8</a><span class="fn-bracket">]</span></span>
+<p>Olivares, E. I., Saavedra, C., Trujillo-Barreto, N. J., &amp; Iglesias, J. (2013). Long-term information and distributed neural activation are relevant for the “internal features advantage” in face processing: electrophysiological and source reconstruction evidence. Cortex; a journal devoted to the study of the nervous system and behavior, 49(10), 2735–2747. <a class="reference external" href="https://doi.org/10.1016/j.cortex.2013.08.001">https://doi.org/10.1016/j.cortex.2013.08.001</a></p>
+</aside>
+<aside class="footnote brackets" id="id38" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id15">12</a><span class="fn-bracket">]</span></span>
+<p>Weibert, K., &amp; Andrews, T. J. (2015). Activity in the right fusiform face area predicts the behavioural advantage for the perception of familiar faces. Neuropsychologia, 75, 588–596. <a class="reference external" href="https://doi.org/10.1016/j.neuropsychologia.2015.07.015">https://doi.org/10.1016/j.neuropsychologia.2015.07.015</a></p>
+</aside>
+<aside class="footnote brackets" id="id39" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id16">11</a><span class="fn-bracket">]</span></span>
+<p>Pourtois, G., Schwartz, S., Seghier, M. L., Lazeyras, F., &amp; Vuilleumier, P. (2005). View-independent coding of face identity in frontal and temporal cortices is modulated by familiarity: an event-related fMRI study. NeuroImage, 24(4), 1214–1224. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2004.10.038">https://doi.org/10.1016/j.neuroimage.2004.10.038</a></p>
+</aside>
+<aside class="footnote brackets" id="id40" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id17">14</a><span class="fn-bracket">]</span></span>
+<p>Large, M. E., Cavina-Pratesi, C., Vilis, T., &amp; Culham, J. C. (2008). The neural correlates of change detection in the face perception network. Neuropsychologia, 46(8), 2169–2176. <a class="reference external" href="https://doi.org/10.1016/j.neuropsychologia.2008.02.027">https://doi.org/10.1016/j.neuropsychologia.2008.02.027</a></p>
+</aside>
+<aside class="footnote brackets" id="id41" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id18">15</a><span class="fn-bracket">]</span></span>
+<p>Weibert, K., Harris, R. J., Mitchell, A., Byrne, H., Young, A. W., &amp; Andrews, T. J. (2016). An image-invariant neural response to familiar faces in the human medial temporal lobe. Cortex; a journal devoted to the study of the nervous system and behavior, 84, 34–42. <a class="reference external" href="https://doi.org/10.1016/j.cortex.2016.08.014">https://doi.org/10.1016/j.cortex.2016.08.014</a></p>
+</aside>
+<aside class="footnote brackets" id="id42" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id19">16</a><span class="fn-bracket">]</span></span>
+<p>Mur, M., Ruff, D. A., Bodurka, J., Bandettini, P. A., &amp; Kriegeskorte, N. (2010). Face-identity change activation outside the face system: “release from adaptation” may not always indicate neuronal selectivity. Cerebral cortex (New York, N.Y. : 1991), 20(9), 2027–2042. <a class="reference external" href="https://doi.org/10.1093/cercor/bhp272">https://doi.org/10.1093/cercor/bhp272</a></p>
+</aside>
+<aside class="footnote brackets" id="id43" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id20">17</a><span class="fn-bracket">]</span></span>
+<p>Dricot, L., Sorger, B., Schiltz, C., Goebel, R., &amp; Rossion, B. (2008). The roles of “face” and “non-face” areas during individual face perception: evidence by fMRI adaptation in a brain-damaged prosopagnosic patient. NeuroImage, 40(1), 318–332. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2007.11.012">https://doi.org/10.1016/j.neuroimage.2007.11.012</a></p>
+</aside>
+<aside class="footnote brackets" id="id44" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id21">19</a><span class="fn-bracket">]</span></span>
+<p>Lai, J., Pancaroglu, R., Oruc, I., Barton, J. J., &amp; Davies-Thompson, J. (2014). Neuroanatomic correlates of the feature-salience hierarchy in face processing: an fMRI -adaptation study. Neuropsychologia, 53, 274–283. <a class="reference external" href="https://doi.org/10.1016/j.neuropsychologia.2013.10.016">https://doi.org/10.1016/j.neuropsychologia.2013.10.016</a></p>
+</aside>
+<aside class="footnote brackets" id="id45" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id22">20</a><span class="fn-bracket">]</span></span>
+<p>Andrews, T. J., &amp; Ewbank, M. P. (2004). Distinct representations for facial identity and changeable aspects of faces in the human temporal lobe. NeuroImage, 23(3), 905–913. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2004.07.060">https://doi.org/10.1016/j.neuroimage.2004.07.060</a></p>
+</aside>
+<aside class="footnote brackets" id="id46" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id23">22</a><span class="fn-bracket">]</span></span>
+<p>Axelrod, V., &amp; Yovel, G. (2015). Successful decoding of famous faces in the fusiform face area. PloS one, 10(2), e0117126. <a class="reference external" href="https://doi.org/10.1371/journal.pone.0117126">https://doi.org/10.1371/journal.pone.0117126</a></p>
+</aside>
+<aside class="footnote brackets" id="id47" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id24">23</a><span class="fn-bracket">]</span></span>
+<p>Eger, E., Schweinberger, S. R., Dolan, R. J., &amp; Henson, R. N. (2005). Familiarity enhances invariance of face representations in human ventral visual cortex: fMRI evidence. NeuroImage, 26(4), 1128–1139. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2005.03.010">https://doi.org/10.1016/j.neuroimage.2005.03.010</a></p>
+</aside>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -443,11 +576,11 @@ The predictive frameswork allows to generate brain maps by generalizing from exc
       </div>
     </a>
     <a class="right-next"
-       href="Discussion.html"
+       href="../code/Brainmap.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Discussion</p>
+        <p class="prev-next-title">Brain map</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -466,9 +599,18 @@ The predictive frameswork allows to generate brain maps by generalizing from exc
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metaanlysis-with-neuroquery">Metaanlysis with Neuroquery</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-for-the-project">Meta-analysis for the project</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Neuroquery</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-with-neuroquery">Meta-analysis with Neuroquery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#meta-analysis-for-the-project">Meta-analysis for the project</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-terms">List of terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-the-literature">Evaluation of the literature</a></li>
 </ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
