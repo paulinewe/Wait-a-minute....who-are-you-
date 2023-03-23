@@ -2,7 +2,7 @@
 
 Due to the problems mentions in the other chapters, I was not able to set up a machine learing approach. Nevertheless, I want to present some result to answer validate the results of the study my project is based on. So to answer where person identity informations are processed and stored, I used a metaanylsis tool called [Neuroquery](https://neuroquery.org/about).
 
-## Metaanlysis with Neuroquery
+## Meta-analysis with Neuroquery
 
 Out there are many neuroscientific papers and each year they get more and more, so finding an answer to a specific question is quiet difficult to do manually. To find a way through the jungle of neuroscientific papers and make collecting and aggregating them faster, easier and automated, Dockès et al. [^1] developed Neuroquery.
 What it does, is prediciting neural correlates of neuroscience concepts related to behavior, diseases, or anatomy. 
