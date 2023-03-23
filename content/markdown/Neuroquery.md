@@ -49,6 +49,7 @@ To sum it up, the most studies provided by Neuroquery point in the same directio
 
 ![literaturelist](/content/markdown/images/litneuro.png)
 
+# References
 
 [^1]: Jérôme Dockès, Russell A Poldrack, Romain Primet, Hande Gözükan, Tal Yarkoni, Fabian Suchanek, Bertrand Thirion, Gaël Varoquaux (2020) NeuroQuery, comprehensive meta-analysis of human brain mapping eLife 9:e53385
 https://doi.org/10.7554/eLife.53385
